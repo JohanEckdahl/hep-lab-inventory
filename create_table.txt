@@ -41,7 +41,7 @@ CREATE TABLE `module` (
   CONSTRAINT `module_ibfk_1` FOREIGN KEY (`sensor_id`) REFERENCES `sensor` (`id`),
   CONSTRAINT `module_ibfk_2` FOREIGN KEY (`pcb_id`) REFERENCES `pcb` (`id`),
   CONSTRAINT `module_ibfk_3` FOREIGN KEY (`plate_id`) REFERENCES `plate` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 
 
 
 
@@ -55,7 +55,7 @@ CREATE TABLE `module` (
   `bonded_skirocs` int(20) DEFAULT NULL,
   `manufacturer` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 
 
 
 
@@ -70,7 +70,7 @@ CREATE TABLE `plate` (
   `size` float NOT NULL,
   `manufacturer` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
 CREATE TABLE `shipment` (
@@ -79,7 +79,7 @@ CREATE TABLE `shipment` (
   `recipient` varchar(20) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 
 
 
 CREATE TABLE `sensor` (
@@ -90,7 +90,7 @@ CREATE TABLE `sensor` (
   `channels` int(20) NOT NULL,
   `manufacturer` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 
 
 
 shipment_item | CREATE TABLE `shipment_item` (
@@ -101,7 +101,7 @@ shipment_item | CREATE TABLE `shipment_item` (
   PRIMARY KEY (`id`),
   KEY `shipment_id` (`shipment_id`),
   CONSTRAINT `shipment_item_ibfk_1` FOREIGN KEY (`shipment_id`) REFERENCES `shipment` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 
 
 
 CREATE TABLE `user` (
@@ -110,7 +110,7 @@ CREATE TABLE `user` (
   `password` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 
 
 
 
