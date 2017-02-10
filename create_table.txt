@@ -1,0 +1,120 @@
+
++------------------+
+| Tables_in_heplab |
++------------------+
+| comment          |
+| module           |
+| pcb              |
+| plate            |
+| sensor           |
+| shipment         |
+| shipment_item    |
+| user             |
++------------------+
+
+
+
+SHOW CREATE TABLE comment;
+
+CREATE TABLE `comment` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(20) NOT NULL,
+  `table_key` int(20) NOT NULL,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` int(20) NOT NULL,
+  `body` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+
+CREATE TABLE `module` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `sensor_id` int(20) DEFAULT NULL,
+  `pcb_id` int(20) DEFAULT NULL,
+  `plate_id` int(20) DEFAULT NULL,
+  `barcode` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sensor_id` (`sensor_id`),
+  KEY `pcb_id` (`pcb_id`),
+  KEY `plate_id` (`plate_id`),
+  CONSTRAINT `module_ibfk_1` FOREIGN KEY (`sensor_id`) REFERENCES `sensor` (`id`),
+  CONSTRAINT `module_ibfk_2` FOREIGN KEY (`pcb_id`) REFERENCES `pcb` (`id`),
+  CONSTRAINT `module_ibfk_3` FOREIGN KEY (`plate_id`) REFERENCES `plate` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 
+
+
+
+ CREATE TABLE `pcb` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `identifier` varchar(20) DEFAULT NULL,
+  `thickness` float DEFAULT NULL,
+  `flatness` float DEFAULT NULL,
+  `size` float NOT NULL,
+  `channels` int(20) NOT NULL,
+  `bonded_skirocs` int(20) DEFAULT NULL,
+  `manufacturer` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1 
+
+
+
+CREATE TABLE `plate` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `material` varchar(20) NOT NULL,
+  `nom_thickness` float DEFAULT NULL,
+  `min_thickness` float DEFAULT NULL,
+  `max_thickness` float DEFAULT NULL,
+  `flatness` float DEFAULT NULL,
+  `kapton` enum('y','n') NOT NULL,
+  `size` float NOT NULL,
+  `manufacturer` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1
+
+
+CREATE TABLE `shipment` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `actor` varchar(20) NOT NULL,
+  `recipient` varchar(20) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 
+
+
+CREATE TABLE `sensor` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `identifier` varchar(20) DEFAULT NULL,
+  `type` varchar(20) NOT NULL,
+  `size` int(20) NOT NULL,
+  `channels` int(20) NOT NULL,
+  `manufacturer` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1 
+
+
+shipment_item | CREATE TABLE `shipment_item` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `shipment_id` int(20) NOT NULL,
+  `table_name` varchar(20) NOT NULL,
+  `table_key` int(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `shipment_id` (`shipment_id`),
+  CONSTRAINT `shipment_item_ibfk_1` FOREIGN KEY (`shipment_id`) REFERENCES `shipment` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 
+
+
+CREATE TABLE `user` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 
+
+
+
+
+
+
+
