@@ -1,10 +1,13 @@
-# hep-lab-inventory
+# Overview
 This repository includes PHP code for a public web interface displaying the UCSB HEP Lab inventory. Ubuntu16, Apache2, MySQL and PHP7 are used.
+
+#Important Notes
 
 ## Git Ignore
 
 Git is ignoring a file called '/includes/config.php'. You will need to create your own with the following format. 
-    Replace the angle bracketed values with constants from your MySQL database (e.g. localhost, johan, pswd, heplab)
+    Replace the first four angle bracketed values with constants from your MySQL database (e.g. localhost, johan, pswd, heplab).
+    Then replace <path/to/project/root> with the path to this repo (e.g. /var/www/html/user/clone).
 
 
 ```
@@ -13,6 +16,8 @@ Git is ignoring a file called '/includes/config.php'. You will need to create yo
   define('user', '<username>');
   define('password', '<password>');
   define('name', '<databasename>');
+  
+  define('SITE_ROOT', '<path/to/project/root>');
 ?>
 ```
 
