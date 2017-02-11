@@ -21,8 +21,14 @@ Git is also ignoring the directory /public/images
    http://strange.physics.ucsb.edu/webpages/public/images/
    
 ## Database Structure
+mysqldump.sql will be updated anytime changes are made to the table structure.
 
-Please see create_table.txt for list of tables and outputs of command
+To set up the database used in this project first login to MySQL then create a database
+with the name specified in your config.php file (you must have permissions to do this). Next, load the mysqldump.sql file. This can be done with the following code (do these commands in the same directory as mysqldump.sql):
+
 ```
-SHOW CREATE TABLE <tablename>;
+mysql -u <username> -p
+CREATE DATABASE <database_name>;
+exit
+mysql -u <username> -p <database_name> < mysqldump.sql
 ```
