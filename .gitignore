@@ -1,2 +1,3 @@
 includes/config.php
 public/images/*
+mysqldump.sql
