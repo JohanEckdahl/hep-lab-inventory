@@ -46,11 +46,67 @@ if (isset($_GET['name'])) {
 	$objects=$object_name::find_all();
 
 	foreach ($objects as $object){
-		echo "<tr>";		
-		foreach ($object_name::$table_attributes as $item){
-			echo "<td>".$object->$item."</td>";
-	}		
-}
+			echo "<tr>";
+			foreach ($object_name::$table_attributes as $item){
+		    if ($object_name == "module"){
+			switch($item) {
+			    case "id":
+				echo "<td> <a href = \"main.php?hardware=module&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    case "sensor_id":
+				echo "<td> <a href = \"main.php?hardware=sensor&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    case "pcb_id":
+				echo "<td> <a href = \"main.php?hardware=pcb&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    case "plate_id":
+				echo "<td> <a href = \"main.php?hardware=plate&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			}
+		    } elseif ($object_name == "pcb") {
+
+			switch($item) {
+			    case "id":
+				echo "<td> <a href = \"main.php?hardware=pcb&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    case "module_id":
+				echo "<td> <a href = \"main.php?hardware=module&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    default:
+				echo "<td>".$object->$item."</td>";
+				break;
+			}
+		    } elseif ($object_name == "sensor") {
+
+			switch($item) {
+			    case "id":
+				echo "<td> <a href = \"main.php?hardware=sensor&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    case "module_id":
+				echo "<td> <a href = \"main.php?hardware=module&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    default:
+				echo "<td>".$object->$item."</td>";
+				break;
+			}
+		    } elseif ($object_name == "plate") {
+
+			switch($item) {
+			    case "id":
+				echo "<td> <a href = \"main.php?hardware=plate&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    case "module_id":
+				echo "<td> <a href = \"main.php?hardware=module&id=".$object->$item."\">". $object->$item ."</a> </td>";
+				break;
+			    default:
+				echo "<td>".$object->$item."</td>";
+				break;
+			}
+		    } else {
+			echo "<td>". $object->$item ."</td>";
+		    }
+		}
+	}
 ?>
 
 </section>
