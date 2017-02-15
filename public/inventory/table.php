@@ -1,4 +1,4 @@
-<?php 
+<?php
 //This Document Provides for the table Style Pages
 
 require_once("../../includes/initialize.php");
@@ -8,9 +8,24 @@ require_once("../../includes/initialize.php");
 if (isset($_GET['name'])) {
     $object_name = $_GET['name'];
 }else{
-	header( 'Location: ./index.php');
-	exit();
+        header( 'Location: ./index.php');
+        exit();
 }
+
+
+//Check for 'Value' and 'Item' and call either
+// find_all or find_by_attribute
+if (isset($_GET['item']) && isset($_GET['value'])){
+        $item = $_GET['item'];
+        $value = $_GET['value'];
+        $objects=$object_name::find_by_attribute($item, $value);
+}else{
+
+$objects=$object_name::find_all();
+
+}
+
+
 ?>
 
 
@@ -31,25 +46,28 @@ if (isset($_GET['name'])) {
 
 
 
-<?php 
+<?php
 
 //Print Headers
-		echo "<table><tr>";
-		foreach ($object_name::$table_header as $word)
-		{
-		echo "<th>{$word}</th>";
-		}
-		echo '</tr>';
+                echo "<table><tr>";
+                foreach ($object_name::$table_header as $word)
+                {
+                echo "<th>{$word}</th>";
+                }
+                echo '</tr>';
 
 //Print Attributes
 
-	$objects=$object_name::find_all();
 
-	foreach ($objects as $object){
-		echo "<tr>";		
-		foreach ($object_name::$table_attributes as $item){
-			echo "<td>".$object->$item."</td>";
-	}		
+        foreach ($objects as $object){
+                echo "<tr>";
+                foreach ($object_name::$table_attributes as $att){
+                        $html = "<td><a href='./table.php?name=".$object_name;
+                        $html .="&item=".$att;
+                        $html .= "&value=".$object->$att;
+                        $html .= "'>".$object->$att."</a></td>";
+                        echo $html;
+        }
 }
 ?>
 
