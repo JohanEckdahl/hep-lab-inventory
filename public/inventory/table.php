@@ -62,8 +62,10 @@ $objects=$object_name::find_all();
         foreach ($objects as $object){
                 echo "<tr>";
                 foreach ($object_name::$table_attributes as $att){
-                        $html = "<td><a href='./table.php?name=".$object_name;
-                        $html .="&item=".$att;
+                        $att == "id" ? $page = 'main' : $page = 'table';
+			$html = "<td><a href='./".$page;
+			$html .=".php?name=".$object_name; 
+			$html .="&item=".$att;
                         $html .= "&value=".$object->$att;
                         $html .= "'>".$object->$att."</a></td>";
                         echo $html;
