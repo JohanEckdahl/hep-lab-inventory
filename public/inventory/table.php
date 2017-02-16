@@ -48,63 +48,14 @@ if (isset($_GET['name'])) {
 	foreach ($objects as $object){
 			echo "<tr>";
 			foreach ($object_name::$table_attributes as $item){
-		    if ($object_name == "module"){
-			switch($item) {
-			    case "id":
-				echo "<td> <a href = \"main.php?hardware=module&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    case "sensor_id":
-				echo "<td> <a href = \"main.php?hardware=sensor&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    case "pcb_id":
-				echo "<td> <a href = \"main.php?hardware=pcb&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    case "plate_id":
-				echo "<td> <a href = \"main.php?hardware=plate&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			}
-		    } elseif ($object_name == "pcb") {
-
-			switch($item) {
-			    case "id":
-				echo "<td> <a href = \"main.php?hardware=pcb&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    case "module_id":
-				echo "<td> <a href = \"main.php?hardware=module&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    default:
-				echo "<td>".$object->$item."</td>";
-				break;
-			}
-		    } elseif ($object_name == "sensor") {
-
-			switch($item) {
-			    case "id":
-				echo "<td> <a href = \"main.php?hardware=sensor&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    case "module_id":
-				echo "<td> <a href = \"main.php?hardware=module&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    default:
-				echo "<td>".$object->$item."</td>";
-				break;
-			}
-		    } elseif ($object_name == "plate") {
-
-			switch($item) {
-			    case "id":
-				echo "<td> <a href = \"main.php?hardware=plate&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    case "module_id":
-				echo "<td> <a href = \"main.php?hardware=module&id=".$object->$item."\">". $object->$item ."</a> </td>";
-				break;
-			    default:
-				echo "<td>".$object->$item."</td>";
-				break;
-			}
-		    } else {
-			echo "<td>". $object->$item ."</td>";
-		    }
+            if ($item == "id") {
+                echo "<td> <a href = \"main.php?hardware=".$object_name."&id=".$object->$item."\">". $object->$item ."</a> </td>";
+            } else if (in_array(ucfirst(substr($item, 0, -3)) . " ID", $object_name::$table_header)
+            || in_array(strtoupper(substr($item, 0, -3)) . " ID", $object_name::$table_header)) {
+                echo "<td> <a href = \"main.php?hardware=". substr($item, 0, -3)."&id=".$object->$item."\">". $object->$item ."</a> </td>";
+            } else {
+                echo "<td>". $object->$item ."</td>";
+            }
 		}
 	}
 ?>
