@@ -46,11 +46,18 @@ if (isset($_GET['name'])) {
 	$objects=$object_name::find_all();
 
 	foreach ($objects as $object){
-		echo "<tr>";		
-		foreach ($object_name::$table_attributes as $item){
-			echo "<td>".$object->$item."</td>";
-	}		
-}
+			echo "<tr>";
+			foreach ($object_name::$table_attributes as $item){
+            if ($item == "id") {
+                echo "<td> <a href = \"main.php?hardware=".$object_name."&id=".$object->$item."\">". $object->$item ."</a> </td>";
+            } else if (in_array(ucfirst(substr($item, 0, -3)) . " ID", $object_name::$table_header)
+            || in_array(strtoupper(substr($item, 0, -3)) . " ID", $object_name::$table_header)) {
+                echo "<td> <a href = \"main.php?hardware=". substr($item, 0, -3)."&id=".$object->$item."\">". $object->$item ."</a> </td>";
+            } else {
+                echo "<td>". $object->$item ."</td>";
+            }
+		}
+	}
 ?>
 
 </section>
