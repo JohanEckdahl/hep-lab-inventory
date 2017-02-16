@@ -16,13 +16,9 @@ if (isset($_GET['name'])) {
 //Check for 'Value' and 'Item' and call either
 // find_all or find_by_attribute
 if (isset($_GET['item']) && isset($_GET['value'])){
-        $item = $_GET['item'];
-        $value = $_GET['value'];
-        $objects=$object_name::find_by_attribute($item, $value);
+	$objects=$object_name::find_by_attribute($_GET['item'], $_GET['value']);
 }else{
-
-$objects=$object_name::find_all();
-
+	$objects=$object_name::find_all();
 }
 
 
