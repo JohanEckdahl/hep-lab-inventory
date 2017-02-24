@@ -7,7 +7,7 @@ This repository includes PHP code for a public web interface displaying the UCSB
 
 Git is ignoring a file called '/includes/config.php'. You will need to create your own with the following format. 
     Replace the first four angle bracketed values with constants from your MySQL database (e.g. localhost, johan, pswd, heplab).
-    Then replace <path/to/project/root> with the path to this repo (e.g. /var/www/html/user/clone).
+    Then replace <path/to/project/root> with the path to this repo on your machine (e.g. /var/www/html/user/clone).
 
 
 ```
@@ -25,15 +25,33 @@ Git is also ignoring the directory /public/images
   You must create this directory and populate it with contents from:
    http://strange.physics.ucsb.edu/webpages/public/images/
    
+
+/public/index.html is ignored allowing for personal creation.
+   
 ## Database Structure
-mysqldump.sql will be updated anytime changes are made to the table structure.
-
-To set up the database used in this project first login to MySQL then create a database
-with the name specified in your config.php file (you must have permissions to do this). Next, load the mysqldump.sql file. This can be done with the following code (do these commands in the same directory as mysqldump.sql):
+Nightly the inventory database is dumped into the file
 
 ```
-mysql -u <username> -p
-CREATE DATABASE <database_name>;
+http://strange.physics.ucsb.edu/webpages/inventory.sql
+```
+
+To set up the database used in this project first login to MySQL then create a database and user with the names specified in your config.php file. Next, load the mysqldump.sql file. This can be done with the following code (do these commands in the same directory as inventory.sql):
+
+```
+mysql -u root -p
+CREATE DATABASE <databasename>;
+CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';
+GRANT ALL PRIVILEGES ON <databasename>.* to '<username>'@'localhost';
 exit
-mysql -u <username> -p <database_name> < mysqldump.sql
+mysql -u <username> -p <database_name> < inventory.sql
 ```
+
+Once the initial database and user are set up you may want to create a script similar to this one:
+
+```
+# This script can only be read and executed by its owner 
+# in order to protect the database password
+wget http://strange.physics.ucsb.edu/webpages/inventory.sql
+mysql -u <username> -p<password> <database_name> < inventory.sql
+```
+which can be put in crontab or ran manually.
