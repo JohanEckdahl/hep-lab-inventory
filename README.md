@@ -7,7 +7,7 @@ This repository includes PHP code for a public web interface displaying the UCSB
 
 Git is ignoring a file called '/includes/config.php'. You will need to create your own with the following format. 
     Replace the first four angle bracketed values with constants from your MySQL database (e.g. localhost, johan, pswd, heplab).
-    Then replace <path/to/project/root> with the path to this repo on your machine (e.g. /var/www/html/user/clone).
+    Then replace '/path/to/project/root/' with the path to this repo on your machine (e.g. /var/www/html/user/clone).
 
 
 ```
@@ -17,7 +17,7 @@ Git is ignoring a file called '/includes/config.php'. You will need to create yo
   define('password', '<password>');
   define('name', '<databasename>');
   
-  define('SITE_ROOT', '<path/to/project/root>');
+  define('SITE_ROOT', '</path/to/project/root/>');
 ?>
 ```
 
@@ -35,7 +35,7 @@ Nightly the inventory database is dumped into the file
 http://strange.physics.ucsb.edu/webpages/inventory.sql
 ```
 
-To set up the database used in this project first login to MySQL then create a database and user with the names specified in your config.php file. Next, load the mysqldump.sql file. This can be done with the following code (do these commands in the same directory as inventory.sql):
+To set up the database used in this project first login to MySQL then create a database and user with the names specified in your config.php file. Next, load the inventory.sql file. This can be done with the following code (do these commands in the same directory as inventory.sql):
 
 ```
 mysql -u root -p
