@@ -52,6 +52,6 @@ Once the initial database and user are set up you may want to create a script si
 # This script can only be read and executed by its owner 
 # in order to protect the database password
 wget http://strange.physics.ucsb.edu/webpages/inventory.sql
-mysql -u <username> -p<password> <database_name> < /path/to/inventory.sql
+mysql -u <username> -p<password> <database_name> < </path/to/>inventory.sql
 ```
 which can be put in crontab or ran manually.
