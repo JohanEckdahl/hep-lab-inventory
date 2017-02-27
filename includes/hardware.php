@@ -10,7 +10,7 @@ class Hardware extends DatabaseObject {
 		global $database;
 
 		//Find location with long-winded SQL
-		$sql  = "SELECT date, recipient FROM shipment";
+		$sql  = "SELECT recipient FROM shipment";
 		$sql .= " WHERE id IN";
 		$sql .= " (SELECT shipment_id FROM shipment_item";
 		$sql .= " WHERE table_name= '".static::$table_name."'";
