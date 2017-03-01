@@ -2,16 +2,9 @@
 
 // Edit $names and $urls
 
-$names = array("Modules", "Sensors", "PCBs", "Plates"
-//, "Shipments", "Comments"
+$names = array("Modules", "Sensors", "PCBs", "Plates", "Shipments");
 
-);
-
-$urls = array("table.php?name=module", "table.php?name=sensor", "table.php?name=pcb", "table.php?name=plate" 
-
-//, "table.php?name=shipment", "table.php?name=comment"
-
- );
+$urls = array("table.php?name=module", "table.php?name=sensor", "table.php?name=pcb", "table.php?name=plate", "table.php?name=shipment");
 
 
 $links = array_combine($names, $urls);

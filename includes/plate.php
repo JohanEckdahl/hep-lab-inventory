@@ -17,9 +17,9 @@ class Plate extends Component {
 
 
 	//Web Table Display Arrays	
-	public static $table_header=array('Plate ID', 'Material', 'Nom Thickness', 'Min  Thickness', 'Max Thickness', 'Flatness', 'Kapton', 'Size', 'Manufacturer', 'Module ID');
+	public static $table_header=array('Plate ID', 'Material', 'Nom Thickness', 'Min  Thickness', 'Max Thickness', 'Flatness', 'Kapton', 'Size', 'Manufacturer', 'Module ID', 'Location');
 	public static $table_attributes
-= array('id', 'material', 'nom_thickness', 'min_thickness', 'max_thickness', 'flatness', 'kapton', 'size', 'manufacturer', 'module_id');
+= array('id', 'material', 'nom_thickness', 'min_thickness', 'max_thickness', 'flatness', 'kapton', 'size', 'manufacturer', 'module_id', 'location');
 
 
 }//Class Brace

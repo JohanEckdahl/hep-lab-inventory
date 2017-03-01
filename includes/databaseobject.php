@@ -35,6 +35,16 @@ class DatabaseObject {
 		return $object_array;
 	}
 
+	protected static function find_assoc($sql){
+		global $database;
+		$query_array= array();
+		$result = $database->query($sql);
+		while($row = $database->fetch_assoc($result)){
+			$query_array[] =$row;
+		}
+		return $query_array;
+	}
+
 	public static function find_by_attribute($attribute, $value){
                 global $database;
                 $sql = "SELECT * FROM ".static::$table_name;

@@ -2,27 +2,34 @@
 require_once ("initialize.php");
 
 class Component extends Hardware {
-	
-	//This class extends hardware and finds the module id for components.	
+	//This class extends hardware and finds the module id for components.
 	//All components have a module_id whether it is null or not.
-	
-	
+
 	public $module_id;
 
 	protected static function find_module_id($object){
-		global $database;		
+		global $database;
 		$sql = "SELECT id FROM module WHERE ";
-		$sql .= static::$table_name."_id = {$object->id} LIMIT 1"; 
+		$sql .= static::$table_name."_id = {$object->id} LIMIT 1";
 		$x=$database->fetch_array($database->query($sql))[0];
-		if (isset($x)) {return $x;}	
+		if (isset($x)) {return $x;}
 	}
 
-	
+
+
 	protected static function get_extra_attributes($object){
 		parent::get_extra_attributes($object);
 		$object->module_id = self::find_module_id($object);
+
+
+		//Find module location if component is part of a module
+		if(isset($object->module_id)){
+                        $object2 = Module::find_by_id($object->module_id);
+                }else {
+			$object2 = $object;
+		}
+		$object->location =  self::find_location($object2);
 	}
+
 }
-
-
 ?>
