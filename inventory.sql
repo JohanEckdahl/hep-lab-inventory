@@ -73,7 +73,7 @@ CREATE TABLE `module` (
 
 LOCK TABLES `module` WRITE;
 /*!40000 ALTER TABLE `module` DISABLE KEYS */;
-INSERT INTO `module` VALUES (1,1,1,18,NULL),(2,2,2,19,NULL),(3,3,3,20,NULL),(4,4,4,28,NULL),(5,5,5,29,NULL),(6,6,6,30,NULL),(7,7,7,31,NULL),(8,8,8,32,NULL),(9,9,9,21,NULL),(10,10,10,22,NULL),(11,11,NULL,23,NULL),(12,12,11,33,NULL),(13,13,24,34,NULL),(14,14,12,1,NULL),(15,15,NULL,35,NULL),(16,16,13,24,NULL),(17,17,14,2,NULL),(18,18,NULL,3,NULL),(19,19,15,4,NULL),(20,20,16,5,NULL),(21,21,17,6,NULL),(22,22,18,7,NULL),(23,23,NULL,8,NULL),(24,24,19,9,NULL),(25,25,20,25,NULL),(26,26,21,26,NULL),(27,27,22,10,NULL),(28,28,23,11,NULL);
+INSERT INTO `module` VALUES (1,1,1,24,NULL),(2,2,2,25,NULL),(3,3,3,17,NULL),(4,4,4,28,NULL),(5,5,5,29,NULL),(6,6,6,30,NULL),(7,7,7,31,NULL),(8,8,8,32,NULL),(9,9,9,18,NULL),(10,10,10,19,NULL),(11,11,NULL,20,NULL),(12,12,11,33,NULL),(13,13,24,34,NULL),(14,14,12,1,NULL),(15,15,NULL,35,NULL),(16,16,13,21,NULL),(17,17,14,2,NULL),(18,18,NULL,3,NULL),(19,19,15,4,NULL),(20,20,16,5,NULL),(21,21,17,6,NULL),(22,22,18,7,NULL),(23,23,NULL,8,NULL),(24,24,19,9,NULL),(25,33,20,10,NULL),(26,26,21,22,NULL),(27,27,22,23,NULL),(28,34,23,11,NULL);
 /*!40000 ALTER TABLE `module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +162,7 @@ CREATE TABLE `sensor` (
 
 LOCK TABLES `sensor` WRITE;
 /*!40000 ALTER TABLE `sensor` DISABLE KEYS */;
-INSERT INTO `sensor` VALUES (1,NULL,'200DD',6,128,'HPK'),(2,NULL,'200DD',6,128,'HPK'),(3,NULL,'200DD',6,128,'HPK'),(4,NULL,'200DD',6,128,'HPK'),(5,NULL,'200DD',6,128,'HPK'),(6,NULL,'200DD',6,128,'HPK'),(7,NULL,'200DD',6,128,'HPK'),(8,'3','200DD',6,128,'HPK'),(9,'4','200DD',6,128,'HPK'),(10,'5','200DD',6,128,'HPK'),(11,'6','200DD',6,128,'HPK'),(12,'7','200DD',6,128,'HPK'),(13,'9','200DD',6,128,'HPK'),(14,'11','200DD',6,128,'HPK'),(15,'14','200DD',6,128,'HPK'),(16,'17','200DD',6,128,'HPK'),(17,'19','200DD',6,128,'HPK'),(18,'21','200DD',6,128,'HPK'),(19,'22','200DD',6,128,'HPK'),(20,'28','200DD',6,128,'HPK'),(21,'29','200DD',6,128,'HPK'),(22,'31','200DD',6,128,'HPK'),(23,'32','200DD',6,128,'HPK'),(24,'35','200DD',6,128,'HPK'),(25,'34','200DD',6,128,'HPK'),(26,'36','200DD',6,128,'HPK'),(27,'37','200DD',6,128,'HPK'),(28,'38','200DD',6,128,'HPK'),(29,'39','200DD',6,128,'HPK'),(30,'40','200DD',6,128,'HPK'),(31,'44','200DD',6,128,'HPK'),(32,'45','200DD',6,128,'HPK'),(33,'1001','200DD',6,128,'HPK'),(34,'1002','200DD',6,128,'HPK');
+INSERT INTO `sensor` VALUES (1,NULL,'200DD',6,128,'HPK'),(2,NULL,'200DD',6,128,'HPK'),(3,NULL,'200DD',6,128,'HPK'),(4,NULL,'200DD',6,128,'HPK'),(5,NULL,'200DD',6,128,'HPK'),(6,NULL,'200DD',6,128,'HPK'),(7,NULL,'200DD',6,128,'HPK'),(8,'3','200DD',6,128,'HPK'),(9,'4','200DD',6,128,'HPK'),(10,'5','200DD',6,128,'HPK'),(11,'6','200DD',6,128,'HPK'),(12,'7','200DD',6,128,'HPK'),(13,'9','200DD',6,128,'HPK'),(14,'11','200DD',6,128,'HPK'),(15,'14','200DD',6,128,'HPK'),(16,'17','200DD',6,128,'HPK'),(17,'19','200DD',6,128,'HPK'),(18,'21','200DD',6,128,'HPK'),(19,'22','200DD',6,128,'HPK'),(20,'28','200DD',6,128,'HPK'),(21,'29','200DD',6,128,'HPK'),(22,'31','200DD',6,128,'HPK'),(23,'32','200DD',6,128,'HPK'),(24,'35','200DD',6,128,'HPK'),(25,'34','200DD',6,128,'HPK'),(26,'36','200DD',6,128,'HPK'),(27,'37','200DD',6,128,'HPK'),(28,'38','200DD',6,128,'HPK'),(29,'39','200DD',6,128,'HPK'),(30,'40','200DD',6,128,'HPK'),(31,'44','200DD',6,128,'HPK'),(32,'45','200DD',6,128,'HPK'),(33,'1001','300STD',6,128,'HPK'),(34,'1002','300STD',6,128,'HPK');
 /*!40000 ALTER TABLE `sensor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ CREATE TABLE `shipment` (
   `recipient` varchar(20) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,6 +188,7 @@ CREATE TABLE `shipment` (
 
 LOCK TABLES `shipment` WRITE;
 /*!40000 ALTER TABLE `shipment` DISABLE KEYS */;
+INSERT INTO `shipment` VALUES (1,'FNAL','UCSB','2016-06-01'),(2,'UCSB','FNAL','2016-06-02'),(3,'UCSB','UMN','2016-06-08'),(4,'UCSB','FNAL','2016-06-10'),(5,'UCSB','FNAL','2016-06-21'),(6,'UCSB','FNAL','2016-06-30'),(7,'UCSB','FNAL','2016-07-05'),(8,'UCSB','FNAL','2016-07-06');
 /*!40000 ALTER TABLE `shipment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +207,7 @@ CREATE TABLE `shipment_item` (
   PRIMARY KEY (`id`),
   KEY `shipment_id` (`shipment_id`),
   CONSTRAINT `shipment_item_ibfk_1` FOREIGN KEY (`shipment_id`) REFERENCES `shipment` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,6 +216,7 @@ CREATE TABLE `shipment_item` (
 
 LOCK TABLES `shipment_item` WRITE;
 /*!40000 ALTER TABLE `shipment_item` DISABLE KEYS */;
+INSERT INTO `shipment_item` VALUES (1,1,'sensor',1),(2,1,'sensor',2),(3,1,'sensor',3),(4,1,'sensor',4),(5,1,'sensor',5),(6,1,'sensor',6),(7,1,'sensor',7),(8,1,'sensor',8),(9,1,'sensor',9),(10,1,'sensor',10),(11,1,'sensor',11),(12,8,'sensor',12),(13,1,'sensor',13),(14,1,'sensor',14),(15,1,'sensor',15),(16,1,'sensor',16),(17,1,'sensor',17),(18,1,'sensor',18),(19,1,'sensor',19),(20,1,'sensor',20),(21,1,'sensor',21),(22,1,'sensor',22),(23,1,'sensor',23),(24,1,'sensor',24),(25,1,'sensor',25),(26,8,'sensor',26),(27,1,'sensor',27),(28,1,'sensor',28),(29,1,'sensor',29),(30,1,'sensor',30),(31,1,'sensor',31),(32,1,'sensor',32),(33,1,'sensor',33),(34,1,'sensor',34),(35,1,'sensor',35),(36,1,'plate',1),(37,1,'plate',2),(38,1,'plate',3),(39,1,'plate',4),(40,1,'plate',5),(41,1,'plate',6),(42,1,'plate',7),(43,1,'plate',8),(44,1,'plate',9),(45,1,'plate',10),(46,1,'plate',11),(47,8,'plate',12),(48,1,'plate',13),(49,1,'plate',14),(50,1,'plate',15),(51,1,'plate',16),(52,1,'plate',17),(53,1,'plate',18),(54,1,'plate',19),(55,1,'plate',20),(56,1,'plate',21),(57,1,'plate',22),(58,1,'plate',23),(59,1,'plate',24),(60,1,'plate',25),(61,8,'plate',26),(62,1,'plate',27),(63,1,'plate',28),(64,1,'plate',29),(65,1,'plate',30),(66,1,'plate',31),(67,1,'plate',32),(68,1,'plate',33),(69,1,'plate',34),(70,1,'plate',35),(71,1,'plate',36),(72,1,'plate',37),(73,3,'module',14),(74,3,'module',17),(75,4,'module',22),(76,5,'module',19),(77,5,'module',24),(78,6,'module',21),(79,6,'module',9),(80,7,'module',20),(81,7,'module',16),(82,7,'module',27),(83,8,'module',12),(84,8,'module',26),(85,2,'module',1),(86,2,'module',2),(87,2,'module',3),(88,2,'module',4),(89,2,'module',5),(90,2,'module',6),(91,2,'module',7),(92,2,'module',8),(93,2,'module',10),(94,2,'module',25),(95,2,'module',28);
 /*!40000 ALTER TABLE `shipment_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-28  0:00:01
+-- Dump completed on 2017-03-03  0:00:02

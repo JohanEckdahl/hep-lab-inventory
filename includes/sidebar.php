@@ -2,9 +2,9 @@
 
 // Edit $names and $urls
 
-$names = array("Modules", "Sensors", "PCBs", "Plates", "Shipments");
+$names = array("Modules", "Sensors", "PCBs", "Plates", "Shipments", "Comments");
 
-$urls = array("table.php?name=module", "table.php?name=sensor", "table.php?name=pcb", "table.php?name=plate", "table.php?name=shipment");
+$urls = array("module", "sensor", "pcb", "plate", "shipment", "comment");
 
 
 $links = array_combine($names, $urls);
@@ -15,7 +15,7 @@ $links = array_combine($names, $urls);
 
 <?php
 foreach ($links as $value=>$key){
-echo  "<tr><td align='left'><a href={$key}>{$value}</a>";
+echo  "<tr><td align='left'><a href=table.php?name={$key}>{$value}</a>";
 }
 ?>
 
