@@ -92,7 +92,7 @@ if (isset($_GET['item']) && isset($_GET['value'])){
         foreach ($objects as $object){
                 echo "<tr>";
                 foreach (comment::$table_attributes as $att){
-                        $att == "id" ? $page = 'main' : $page = 'table';
+                        $page = 'table';
                         $html = "<td><a href='./".$page;
                         $html .=".php?name=".'comment';
                         $html .="&item=".$att;
