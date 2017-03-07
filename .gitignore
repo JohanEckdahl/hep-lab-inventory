@@ -1,4 +1,4 @@
 includes/config.php
 public/images/*
-mysqldump.sql
+inventory.sql
 public/index.html

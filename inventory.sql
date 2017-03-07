@@ -24,15 +24,15 @@ DROP TABLE IF EXISTS `comment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
-  `table_name` varchar(20) NOT NULL,
+  `item_table` varchar(20) NOT NULL,
   `table_key` int(20) NOT NULL,
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(20) NOT NULL,
-  `body` varchar(250) NOT NULL,
+  `body` varchar(500) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES (1,'sensor',1,'2017-03-03 20:47:19',1,'sensor 1 is cool');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-03  0:00:02
+-- Dump completed on 2017-03-06 16:15:39
