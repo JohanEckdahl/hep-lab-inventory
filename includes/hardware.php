@@ -22,6 +22,14 @@ class Hardware extends DatabaseObject {
 		}
 	}
 
+	protected static function find_comments($object){
+		$sql = "SELECT * FROM comment WHERE ";
+		$sql.= "item_table = '".get_class($object)::$table_name."'";
+		$sql.= " AND table_key = ".$object->id;
+		return Comment::find_by_sql($sql);
+	}
+	
+
 	protected static function get_extra_attributes($object){
 		parent::get_extra_attributes($object);
 		$object->location = self::find_location($object);
@@ -32,6 +40,16 @@ class Hardware extends DatabaseObject {
 		echo "<a href='../../images/{$object_name}'> images </a>";
 		echo " | <a href='../../data/{$object_name}'> data </a>";
 	}
+
+	public static function print_extra_info($object){
+		parent::print_extra_info($object);
+		static::print_table_column_names('comment');
+		static::print_table_attributes(static::find_comments($object));
+	}
+		
+	
+
+
 }
 
 ?>

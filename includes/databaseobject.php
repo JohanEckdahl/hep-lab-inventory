@@ -123,8 +123,7 @@ class DatabaseObject {
 		foreach ($objects as $object){
                 echo "<tr>";
                 foreach (get_class($object)::$table_attributes as $att){
-						$att == "id" ? $page = 'main' : $page = 'table';
-						$html = "<td><a href='./".$page;
+						$html = "<td><a href='./table";
 						$html .=".php?name=".get_class($object); 
 						$html .="&item=".$att;
                         $html .= "&value=".$object->$att;
@@ -133,9 +132,8 @@ class DatabaseObject {
 			}
 		}
 	}
-	public static function print_extra_info($object){
-	
 
+	public static function print_extra_info($object){
 	}
 
 
