@@ -3,7 +3,6 @@
 
 require_once("../../includes/initialize.php");
 
-
 //Check for URL Modifier, if not direct back to index.php
 if (isset($_GET['name'])) {
     $object_name = $_GET['name'];
@@ -21,7 +20,6 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 	$objects=$object_name::find_all();
 }
 
-
 ?>
 
 
@@ -29,7 +27,6 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
-
 </head>
 <body>
 <nav>
@@ -38,15 +35,14 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 <section>
 
 <?php
-// Print main header
-$object_name::print_large_header($object_name);
-
+// Print table header
+	$object_name::print_table_header($object_name);
+	echo "<p align=right>".count($objects)." results</p>";
+	echo "<hr>";
 //Print Headers
-       
-	$object_name::print_table_headers($object_name);
+	$object_name::print_table_column_names($object_name);
 //Print Attributes
 	$object_name::print_table_attributes($objects);
-
 ?>
 
 </section>

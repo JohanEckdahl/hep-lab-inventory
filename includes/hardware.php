@@ -25,10 +25,13 @@ class Hardware extends DatabaseObject {
 	protected static function get_extra_attributes($object){
 		parent::get_extra_attributes($object);
 		$object->location = self::find_location($object);
-
-
 	}
-
+	
+	public static function print_table_header($object_name){
+		parent::print_table_header($object_name);
+		echo "<a href='../../images/{$object_name}'> images </a>";
+		echo " | <a href='../../data/{$object_name}'> data </a>";
+	}
 }
 
 ?>

@@ -104,19 +104,13 @@ class DatabaseObject {
 
 
 	
-	public static function print_large_header($object_name){
+	public static function print_table_header($object_name){
 		echo "<font size='6'>".ucfirst($object_name)."</font>&emsp;";
-		$o=$object_name;		
-		if ($o == 'sensor' || $o== 'pcb' || $o=='plate'|| $o=='module'){
-			echo "<a href='../../images/{$object_name}'> images </a>";
-			echo " | <a href='../../data/{$object_name}'> data </a>";
-		}
-		echo "<hr><br>";
 	}
 
 
 
-	public static function print_table_headers($object_name){
+	public static function print_table_column_names($object_name){
 		echo "<table><tr>";
                 foreach ($object_name::$table_header as $word)
                 {
