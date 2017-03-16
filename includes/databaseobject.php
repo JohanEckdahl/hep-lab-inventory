@@ -133,6 +133,10 @@ class DatabaseObject {
 			}
 		}
 	}
+	public static function print_extra_info($object){
+	
+
+	}
 
 
 
