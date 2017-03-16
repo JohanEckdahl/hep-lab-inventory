@@ -2,3 +2,5 @@ includes/config.php
 public/images/*
 inventory.sql
 public/index.html
+images/*
+data/*
