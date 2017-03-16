@@ -27,15 +27,14 @@ class Module extends Hardware {
 		foreach($components as $component){			
 			$cid=$component."_id";
 			static::print_table_column_names($component);
-			static::print_table_attributes(ucfirst($component)::find_by_attribute('id', $object->$cid));
-			echo "<br><br>";		
+			$object2 = ucfirst($component)::find_by_attribute('id', $object->$cid);			
+			static::print_table_attributes($object2);
+			echo "<br><br><hr>";		
 		}
 	}
 
 
 }
-
-
 
 
 
