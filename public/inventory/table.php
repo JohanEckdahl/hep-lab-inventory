@@ -11,7 +11,6 @@ if (isset($_GET['name'])) {
         exit();
 }
 
-
 //Check for 'Value' and 'Item' and call either
 // find_all or find_by_attribute
 if (isset($_GET['item']) && isset($_GET['value'])){
@@ -37,12 +36,18 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 <?php
 // Print table header
 	$object_name::print_table_header($object_name);
-	echo "<p align=right>".count($objects)." results</p>";
+	echo "<p align=right>".ucfirst(@$_GET['item'])."=".@$_GET['value']."&emsp;".count($objects)." result(s)</p>";
 	echo "<hr>";
 //Print Headers
 	$object_name::print_table_column_names($object_name);
 //Print Attributes
 	$object_name::print_table_attributes($objects);
+//Print Extra Info
+	if(count($objects)==1){
+		$object_name::print_extra_info(array_pop($objects));
+	}
+
+
 ?>
 
 </section>
