@@ -1,7 +1,7 @@
 # Overview
 This repository includes PHP code for a public web interface displaying the UCSB HEP Lab inventory. Ubuntu16, Apache2, MySQL and PHP7 are used.
 
-#Important Notes
+# Important Notes
 
 ## Git Ignore
 
