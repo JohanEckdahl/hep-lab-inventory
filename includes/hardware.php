@@ -9,9 +9,9 @@ class Hardware extends DatabaseObject {
 	protected static function find_location($object){
  		$sql  = "SELECT recipient FROM shipment";
                 $sql .= " WHERE id IN";
-                $sql .= " (SELECT shipment_id FROM shipment_item";
-                $sql .= " WHERE table_name= '".get_class($object)::$table_name."'";
-                $sql .= " AND table_key = ".$object->id;
+                $sql .= " (SELECT shipment_id FROM shipped_item";
+                $sql .= " WHERE item_table_name= '".get_class($object)::$table_name."'";
+                $sql .= " AND item_id = ".$object->id;
                 $sql .= " ) ORDER BY date DESC LIMIT 1";
                 $array = self::find_assoc($sql);
 		$location = array_pop($array)['recipient'];

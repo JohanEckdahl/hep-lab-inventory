@@ -17,6 +17,15 @@ class Shipment extends DatabaseObject {
 	public static $table_header=array('Shipment ID', 'From', 'To', 'Date');
 	public static $table_attributes= array('id', 'actor', 'recipient', 'date');
 
+
+	public static function print_extra_info($object){
+		parent::print_extra_info($object);
+		static::print_table_column_names('ShippedItem');
+		static::print_table_attributes(ShippedItem::find_by_attribute('shipment_id', $object->id));
+		echo "<hr>";	
+	}
+
+
 }
 
 

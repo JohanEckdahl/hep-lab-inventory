@@ -18,6 +18,21 @@ class Module extends Hardware {
 	public static $table_header=array('Module ID', 'Sensor ID', 'PCB ID', 'Plate ID', 'Location');
 	public static $table_attributes= array('id', 'sensor_id', 'pcb_id', 'plate_id', 'location');
 
+
+
+	//Methods
+	public static function print_extra_info($object){
+		parent::print_extra_info($object);
+		$components=array('sensor', 'pcb', 'plate');
+		foreach($components as $component){			
+			$cid=$component."_id";
+			static::print_table_column_names($component);
+			static::print_table_attributes(ucfirst($component)::find_by_attribute('id', $object->$cid));
+			echo "<br><br>";		
+		}
+	}
+
+
 }
 
 
