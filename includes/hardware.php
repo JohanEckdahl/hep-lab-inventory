@@ -33,11 +33,7 @@ class Hardware extends DatabaseObject {
 		$object->location = self::find_location($object);
 	}
 	
-	public static function print_table_header($object_name){
-		parent::print_table_header($object_name);
-		echo "<a href='../../images/{$object_name}'> images </a>";
-		echo " | <a href='../../data/{$object_name}'> data </a>";
-	}
+
 
 	public static function print_extra_info($object){
 		parent::print_extra_info($object);

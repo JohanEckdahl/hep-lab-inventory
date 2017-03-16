@@ -5,7 +5,8 @@ require_once("../../includes/initialize.php");
 
 //Check for URL Modifier, if not direct back to index.php
 if (isset($_GET['name'])) {
-    $object_name = $_GET['name'];
+    $object_name = ucfirst($_GET['name']);
+	$onlc = strtolower($_GET['name']);
 }else{
         header( 'Location: ./index.php');
         exit();
@@ -35,10 +36,16 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 
 <?php
 // Print table header
-	$object_name::print_table_header($object_name);
-	echo "<p align=right>".ucfirst(@$_GET['item'])."=".@$_GET['value']."&emsp;".count($objects)." result(s)</p>";
-	echo "<hr>";
-//Print Headers
+	$html = "<font size='6'>".$object_name."</font>&emsp;";
+	if(count($objects) == 1 && in_array($onlc, array('sensor', 'pcb', 'plate', 'module'))){
+		$html.= "<a href='../../images/".$onlc."/".$objects[0]->id."/'> images </a>";
+		$html.= " | <a href='../../data/".$onlc."/".$objects[0]->id."/'> data </a>";
+	}	
+	$html.= "<p align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
+	$html.= count($objects)." result(s)</p>";
+	echo $html."<hr>";
+
+//Print Column Names
 	$object_name::print_table_column_names($object_name);
 //Print Attributes
 	$object_name::print_table_attributes($objects);
@@ -46,8 +53,6 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 	if(count($objects)==1){
 		$object_name::print_extra_info(array_pop($objects));
 	}
-
-
 ?>
 
 </section>

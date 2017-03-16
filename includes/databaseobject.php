@@ -104,12 +104,6 @@ class DatabaseObject {
 
 
 	
-	public static function print_table_header($object_name){
-		echo "<font size='6'>".ucfirst($object_name)."</font>&emsp;";
-	}
-
-
-
 	public static function print_table_column_names($object_name){
 		echo "<table><tr>";
                 foreach ($object_name::$table_header as $word)
