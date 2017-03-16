@@ -98,6 +98,34 @@ class DatabaseObject {
 	protected static function get_extra_attributes($object){}
 
 	
+	
+	// The following functions are for displaying
+	// object attributes in a table
+
+
+	public static function print_table_headers($object_name){
+		echo "<table><tr>";
+                foreach ($object_name::$table_header as $word)
+                {
+                echo "<th>{$word}</th>";
+                }
+                echo '</tr>';
+	}
+
+	public static function print_table_attributes($objects){
+		foreach ($objects as $object){
+                echo "<tr>";
+                foreach (get_class($object)::$table_attributes as $att){
+						$att == "id" ? $page = 'main' : $page = 'table';
+						$html = "<td><a href='./".$page;
+						$html .=".php?name=".get_class($object); 
+						$html .="&item=".$att;
+                        $html .= "&value=".$object->$att;
+                        $html .= "'>".$object->$att."</a></td>";
+                        echo $html;
+			}
+		}
+	}
 
 
 
