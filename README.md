@@ -56,6 +56,6 @@ mysql -u <username> -p<password> <database_name> < inventory.sql
 ```
 which can be put in crontab or ran manually.
 
-#Security
+# Security
 
 All url modifiers are checked against attributes of a given class and never put directly into SQL. All actions besides SELECT are performed directly on the local machine and not through apache. As stated above, configuration data specific to the database is filed in .gitignore and can only be viewed locally or over SSH. If sensitive data is to be put into MySQL it will be discluded from the public mysqldump and dumped and backed up only over a secure connection.
