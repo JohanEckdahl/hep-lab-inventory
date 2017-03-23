@@ -1,6 +1,9 @@
 # Overview
 This repository includes PHP code for a public web interface displaying the UCSB HEP Lab inventory. Ubuntu16, Apache2, MySQL and PHP7 are used.
 
+It also stores PHP code for retrieval of assembly data by LabVIEW. This method avoids the complications of TCP/IP connections or separate database connection software.
+
+
 # Important Notes
 
 ## Git Ignore
