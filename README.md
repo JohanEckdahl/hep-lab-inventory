@@ -36,6 +36,12 @@ Nightly the inventory database is dumped into the file
 
 ```
 http://strange.physics.ucsb.edu/webpages/inventory.sql
+
+```
+An additional table is required to store usernames and passwords. It is excluded from the above mysqldump. Use the template found here
+
+```
+http://strange.physics.ucsb.edu/webpages/usertable.sql
 ```
 
 To set up the database used in this project first login to MySQL then create a database and user with the names specified in your config.php file. Next, load the inventory.sql file. This can be done with the following code (do these commands in the same directory as inventory.sql):
@@ -46,6 +52,7 @@ CREATE DATABASE <databasename>;
 CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';
 GRANT ALL PRIVILEGES ON <databasename>.* to '<username>'@'localhost';
 exit
+mysql -u <username> -p <database_name> < usertable.sql
 mysql -u <username> -p <database_name> < inventory.sql
 ```
 
