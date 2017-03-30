@@ -9,8 +9,8 @@ defined('LIB_PATH') ? null :
 
 require_once (LIB_PATH."/database.php");
 require_once (LIB_PATH."/functions.php");
-//require_once (LIB_PATH."/session.php");
-//require_once (LIB_PATH."/user.php");
+require_once (LIB_PATH."/session.php");
+require_once (LIB_PATH."/user.php");
 require_once (LIB_PATH."/databaseobject.php");
 
 ?>
