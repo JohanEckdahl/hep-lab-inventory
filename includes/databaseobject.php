@@ -113,7 +113,7 @@ class DatabaseObject {
                 echo '</tr>';
 	}
 
-	public static function print_table_attributes($objects){
+	public static function print_table_attributes($objects){		
 		foreach ($objects as $object){
                 echo "<tr>";
                 foreach (get_class($object)::$table_attributes as $att){
@@ -123,8 +123,9 @@ class DatabaseObject {
                         $html .= "&value=".$object->$att;
                         $html .= "'>".$object->$att."</a></td>";
                         echo $html;
-			}
-		}
+				}
+				echo "</tr>";	
+		}	
 	}
 
 	public static function print_extra_info($object){
