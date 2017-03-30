@@ -49,7 +49,7 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 	$object_name::print_table_column_names($object_name);
 //Print Attributes
 	$object_name::print_table_attributes($objects);
-//Print Extra Info
+//Print Extra Info	
 	if(count($objects)==1){
 		$object_name::print_extra_info(array_pop($objects));
 	}

@@ -19,11 +19,7 @@ class Sensor extends Component {
 	public static $table_header=array('Sensor ID', 'Identifier', 'Type', 'Size', 'Channels', 'Manufacturer', 'Module ID', 'Location');
 	public static $table_attributes= array('id', 'identifier', 'type', 'size', 'channels', 'manufacturer', 'module_id', 'location');
 
+
 }
-
-
-
-
-
 ?>
 

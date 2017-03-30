@@ -34,12 +34,10 @@ class Hardware extends DatabaseObject {
 	}
 	
 
-
-	public static function print_extra_info($object){
+	public static function print_extra_info($object){		
 		parent::print_extra_info($object);
 		static::print_table_column_names('comment');
 		static::print_table_attributes(static::find_comments($object));
-		echo "<br><hr><br>";
 	}
 
 }

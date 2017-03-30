@@ -6,12 +6,10 @@ $names = array("Modules", "Sensors", "PCBs", "Plates", "Shipments", "Comments");
 
 $urls = array("module", "sensor", "pcb", "plate", "shipment", "comment");
 
-
 $links = array_combine($names, $urls);
 ?>
 
-
-<table cellspacing="5" cellpadding ="8">
+<table cellspacing="5" cellpadding ="8" >
 
 <?php
 foreach ($links as $value=>$key){
