@@ -17,8 +17,14 @@ class User extends DatabaseObject {
 		global $database;
 		$username = $database->escape_value($username);
 		$password = $database->escape_value($password);	
-		$objects = static::find_by_attribute("username", $username);		
-		return array_pop($objects);		
+		@$object = array_pop(static::find_by_attribute("username", $username));
+	
+		if(isset($object)){
+			return $object->password == $password ? $object : array();		
+		}else{
+			return array();
+		}	
+
 	}
 
 
