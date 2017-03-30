@@ -2,12 +2,7 @@
 require_once('../../includes/initialize.php');
 if (!$session->is_logged_in()) { redirect_to("login.php"); }
 ?>
-
-
-This area is where forms will be.
-
-
+You are logged in.
 </br>
-
 <a href="./logout.php">Logout</a>
 

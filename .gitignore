@@ -4,3 +4,6 @@ inventory.sql
 public/index.html
 images/*
 data/*
+public/inventory/images/*
+public/inventory/data/*
+usertable.sql
