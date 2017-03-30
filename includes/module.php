@@ -11,7 +11,7 @@ class Module extends Hardware {
 
 
 	//Extra Attributes
-	// none right now	
+	// none	
 
 
 	//Web Table Display Arrays
@@ -27,9 +27,10 @@ class Module extends Hardware {
 		foreach($components as $component){			
 			$cid=$component."_id";
 			static::print_table_column_names($component);
-			$object2 = ucfirst($component)::find_by_attribute('id', $object->$cid);			
-			static::print_table_attributes($object2);
-			echo "<br><br><hr>";		
+			echo "<hr><br>";			
+	$object2 = ucfirst($component)::find_by_attribute('id', $object->$cid);			
+			$component::print_table_attributes($object2);
+			$component::print_extra_info($object2[0]);
 		}
 	}
 
