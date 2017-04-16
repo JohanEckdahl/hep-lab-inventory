@@ -8,15 +8,15 @@ class Module extends Hardware {
 	public $sensor_id;
 	public $pcb_id;
 	public $barcode;
-
+	public $thickness;
 
 	//Extra Attributes
 	// none	
 
 
 	//Web Table Display Arrays
-	public static $table_header=array('Module ID', 'Sensor ID', 'PCB ID', 'Plate ID', 'Location');
-	public static $table_attributes= array('id', 'sensor_id', 'pcb_id', 'plate_id', 'location');
+	public static $table_header=array('Module ID', 'Sensor ID', 'PCB ID', 'Plate ID', 'Thickness', 'Location');
+	public static $table_attributes= array('id', 'sensor_id', 'pcb_id', 'plate_id', 'thickness', 'location');
 
 
 
