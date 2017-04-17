@@ -30,18 +30,13 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 </head>
 <body>
 <nav>
-<?php require_once('../../includes/sidebar.php'); ?>
+<?php require_once(LIB_PATH.'/sidebar.php'); ?>
 </nav>
 <section>
 
 <?php
 // Print table header
-	$html = "<font size='6'>".$object_name."</font>&emsp;";
-	$html.= $object_name::print_image_link($objects[0]);
-	$html.= "<p align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
-	$html.= count($objects)." result(s)</p>";
-	echo $html."<hr>";
-
+	$object_name::print_table_header($objects);
 //Print Column Names
 	$object_name::print_table_column_names($object_name);
 //Print Attributes

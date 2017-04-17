@@ -40,6 +40,17 @@ class Hardware extends DatabaseObject {
 		static::print_table_attributes(static::find_comments($object));
 	}
 
+	public static function print_table_header($objects){
+		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
+		if(count($objects)==1){			
+			$html .= static::print_image_link($objects[0]);
+		}
+		$html.= "<p align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
+		$html.= count($objects)." result(s)</p>";
+		echo $html."<hr>";
+
+	}
+
 	public static function print_image_link($object){
 		$dir  = SITE_ROOT.'/public/inventory/images/';
 		$dir .= get_class($object)::$table_name.'/'.$object->id;

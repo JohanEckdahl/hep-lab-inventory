@@ -103,6 +103,13 @@ class DatabaseObject {
 	// object attributes in a table
 
 
+	public static function print_table_header($objects){
+		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
+		$html.= "<p align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
+		$html.= count($objects)." result(s)</p>";
+		echo $html."<hr>";
+	}
+
 	
 	public static function print_table_column_names($object_name){
 		echo "<table><tr>";
