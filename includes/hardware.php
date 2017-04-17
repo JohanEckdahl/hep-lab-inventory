@@ -40,6 +40,20 @@ class Hardware extends DatabaseObject {
 		static::print_table_attributes(static::find_comments($object));
 	}
 
+	public static function print_image_link($object){
+		$dir  = SITE_ROOT.'/public/inventory/images/';
+		$dir .= get_class($object)::$table_name.'/'.$object->id;
+		if (file_exists($dir)){
+			$link = './images/index.php?object='.get_class($object)::$table_name;
+			$link .= '&id='.$object->id;
+			$html = "<a href=".$link;
+			$html .= ">Images</a>";
+		}else{ 
+			$html = '';
+		}
+		return $html;
+	}
+
 }
 
 ?>
