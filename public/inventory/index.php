@@ -5,7 +5,9 @@
 </head>
 <body>
 <nav>
-<?php require_once('../../includes/sidebar.php'); ?>
+<?php 
+require_once("../../includes/initialize.php");
+require_once('../../includes/sidebar.php'); ?>
 </nav>
 <section>
 <img src= "../images/cloudchamber.png" border=0>

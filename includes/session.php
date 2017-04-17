@@ -51,5 +51,5 @@ class Session {
 }//Class Brace
 
 $session = new Session();
-
+!$session->is_logged_in() ? $session_link = "Login" : $session_link = "Logout";
 ?>

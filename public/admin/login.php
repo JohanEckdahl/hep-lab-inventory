@@ -3,7 +3,6 @@
 require_once('../../includes/initialize.php');
 
 
-if($session->is_logged_in()) {redirect_to("index.php");}
 
 if (isset($_POST['submit'])) {
 
@@ -15,7 +14,7 @@ if (isset($_POST['submit'])) {
 
 	if ($found_user) {
 		$session->login($found_user);
-		redirect_to("index.php");
+		redirect_to("../inventory/table.php");
 	}else{
 		$message="Username/password combination incorrect.";
 	}
@@ -66,5 +65,8 @@ if (isset($_POST['submit'])) {
 </html>
 
 
-<?php if(isset($database)) { $database->close_connection(); } ?>
+<?php if(isset($database)) { $database->close_connection(); }
+
+
+?>
 
