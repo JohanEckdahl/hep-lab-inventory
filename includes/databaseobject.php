@@ -118,10 +118,10 @@ class DatabaseObject {
 
 	public static function print_table_header($objects){
 		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
-		if(count($objects)==1){			
-			$html .= static::print_image_link($objects[0]);
+		if(count($objects)==1){	
+			$html .= static::return_image_link($objects[0]);
 		}else{
-			$html.= "<br><br>".static::print_form_links(get_class($objects[0]));
+			$html.= "<br><br>".static::return_form_links(get_class($objects[0]));
 		}
 		$html.= "<div align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
 		$html.= count($objects)." result(s)</div>";
@@ -131,29 +131,31 @@ class DatabaseObject {
 
 	
 	public static function print_table_column_names($object_name){
-		echo "<table><tr>";
+		$html = "<table><tr>";
 		foreach ($object_name::$table_header as $word){
-			echo "<th>{$word}</th>";
+			$html.= "<th>{$word}</th>";
 		}
-		echo '</tr>';
+		$html.='</tr>';
+		echo $html;	
 	}
 
 	public static function print_table_attributes($objects){		
+		$html = '';		
 		foreach ($objects as $object){
-                echo "<tr>";
+                $html .= "<tr>";
                 foreach (get_class($object)::$table_attributes as $att){
-						$html = "<td><a href='./table";
+						$html .= "<td><a href='./table";
 						$html .=".php?name=".get_class($object); 
 						$html .="&item=".$att;
                         $html .= "&value=".$object->$att;
                         $html .= "'>".$object->$att."</a></td>";
-                        echo $html;
-				}
-				echo "</tr>";	
-		}	
+                }
+				$html .="</tr>";	
+		}
+		echo $html;
 	}
 
-	public static function print_image_link($object){
+	public static function return_image_link($object){
 		$dir  = SITE_ROOT.'/public/inventory/images/';
 		$dir .= get_class($object)::$table_name.'/'.$object->id;
 		if (file_exists($dir)){
@@ -167,7 +169,7 @@ class DatabaseObject {
 		return $html;
 	}
 
-	public static function print_form_links($class_name){
+	public static function return_form_links($class_name){
 		global $session;
 		if($session->is_logged_in()){
 			$html ="<a href='../form/form.php?name=".$class_name;

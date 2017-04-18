@@ -36,14 +36,14 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 
 <?php
 // Print table header
-	$object_name::print_table_header($objects);
+	echo $object_name::print_table_header($objects);
 //Print Column Names
-	$object_name::print_table_column_names($object_name);
+	echo $object_name::print_table_column_names($object_name);
 //Print Attributes
-	$object_name::print_table_attributes($objects);
+	echo $object_name::print_table_attributes($objects);
 //Print Extra Info	
 	if(count($objects)==1){
-		$object_name::print_extra_info(array_pop($objects));
+		echo $object_name::print_extra_info(array_pop($objects));
 	}
 ?>
 

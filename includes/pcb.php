@@ -21,7 +21,7 @@ class pcb extends Component {
 		'size' => '6',
 		'channels' => '128',
 		'bonded_skirocs' => '0',
-		'manufacturer' 		=> 'HPK',
+		'manufacturer' 		=> '',
 	);
 		
 
