@@ -38,7 +38,30 @@ class Comment extends DatabaseObject{
 	}
 	
 
-}
+	public static function print_form(){
+		global $session;			
+		if ($session->is_logged_in()){	
+		$html =	"<form action='../admin/insert.php' method = 'post'>
+						 Comment:<br>
+						  <input style='width:600px;' type='text'name='data[body]' value=''>
+						  <br>
+						  <input type='submit' value='Submit'>
+					</form> ";
+		echo $html;
+		}
+	}
+
+
+/*
+	public static function make($table, $key, $user_id, $body){
+		$keys = array ("item_table", "table_key", "user_id", "body");		
+		$values = array($table, $key, $user_id, $body);
+		$assoc = array_combine($keys, $values);
+		static::insert($assoc);
+	}
+	*/	
+
+}//class
 
 
 

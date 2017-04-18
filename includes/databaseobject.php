@@ -3,19 +3,26 @@ require_once ("initialize.php");
 
 class DatabaseObject {
 
+//.......SECTION I......................
+
 	// Attributes
 	//All Children have an ID, table_name
 	//Make sure database column name attributes are written
 	//as they appear in the database
 	public $id;
 	protected static $table_name;
+	public $creation_array = array();
+
+//..........END I.........................
 
 
-	// The following four functions are public and allow for the
-	// finding and instantiaion of objects. They are inhereted by
-	// children who have the static attribute '$table_name'.
-	// Note that 'find_by_sql' & 'find_by_attribute' calls the instantiate method.
-
+//.......SECTION II.....................
+/*
+	The following functions are public and allow for the
+	finding and instantiaion of objects. They are inhereted by
+	children who have the static attribute '$table_name'.
+	Note that 'find_by_sql' & 'find_by_attribute' call the instantiate method.
+*/
 	public static function find_by_id($id=0) {
 		$result_array = static::find_by_sql("SELECT * FROM ".static::$table_name." WHERE id={$id} LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : false;
@@ -62,10 +69,12 @@ class DatabaseObject {
                 return $object_array;
         }
 
+//.......END II...........................
 
 
+//.......SECTION III....................
 
-	//The next two functions istantiate the object
+	//These functions instantiate the object
 	//and assign the specific MySQL table values
 	//to the object's attributes.
 	//The third function is overridden by children
@@ -94,10 +103,12 @@ class DatabaseObject {
 		return $object;
 	}
 
-	//To be Overriden	
+	//Virtual Method
 	protected static function get_extra_attributes($object){}
 
-	
+//.......END III............................	
+
+//.......SECTION IV....................
 	
 	// The following functions are for displaying
 	// object attributes in a table
@@ -138,12 +149,52 @@ class DatabaseObject {
 	public static function print_extra_info($object){
 	}
 
+//.......END IV............................
 
 
 
+//..........Section V......................
+/*	
+	This section covers methods for creation of objects and 
+	insertion into the database
+*/
+
+		public static function form_generator($number){
+			$array = static::$form;
+			$html = "<table><tr>";		
+			foreach($array as $key=>$value){
+				$html.= "<th>{$key}</th>";
+			}
+			$html.= "</tr>";
+			$html.="<form action='./process.php'>";
+			for ($x = 0; $x<= $number; $x++){
+				$html.="<tr>";				
+				foreach($array as $key=>$value){
+					$html.="<td><input value='{$value}' size='3'></td>";
+				}
+				$html.="</tr>";
+			}				
+			$html.= "</table>";
+			$html.= "<br><br><input type='submit' value='Submit'></form>"; 
+			echo $html; 
+		}
 
 
-}//Close Class Brace
+		public static function insert($items) {
+			global $database;
+			foreach($items as $key => $value){
+				$escaped[$key] = $database->escape_value($value);
+			}
+			$sql = "INSERT INTO ".static::$table_name." (";
+			$sql .= join(", ", array_keys($escaped));
+			$sql .= ") VALUES ('";
+			$sql .= join("', '", array_values($escaped));
+			$sql .= "')";
+		}
+
+//........END V.....................
+
+}//End Class
 
 ?>
 
