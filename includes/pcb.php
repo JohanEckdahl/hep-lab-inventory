@@ -13,6 +13,18 @@ class pcb extends Component {
 	public $bonded_skirocs;	
 	public $manufacturer;
 
+	protected static $form = array(
+		'id' => 'null',
+		'identifier' => '',
+		'thickness' => '',
+		'flatness' => '',
+		'size' => '6',
+		'channels' => '128',
+		'bonded_skirocs' => '0',
+		'manufacturer' 		=> 'HPK',
+	);
+		
+
 
 	//Web Table Display Arrays
 	public static $table_header = array('PCB ID', 'Identifier', 'Thickness', 'Flatness', 'Size', 'Channels', 'Bonded Skirocs', 'Manufacturer', 'Module ID', 'Location');

@@ -11,6 +11,15 @@ class Comment extends DatabaseObject{
 	public $user_id;
 	public $item_table;
 
+	protected static $form = array(
+		'id' => 'null',
+		'item_table'=> '',
+		'table_key'	=> '',
+		'datetime'	=> 'null',
+		'user_id'	=> '',
+		'body'		=> '',
+	);
+
 
 	//Extra Attributes
 	public $username;
@@ -38,28 +47,20 @@ class Comment extends DatabaseObject{
 	}
 	
 
-	public static function print_form(){
-		global $session;			
-		if ($session->is_logged_in()){	
-		$html =	"<form action='../admin/insert.php' method = 'post'>
+	public static function print_form($table_name, $table_key, $user_id){
+		$html =	"<form action='../form/process.php?name=comment' method = 'post'>
 						 Comment:<br>
-						  <input style='width:600px;' type='text'name='data[body]' value=''>
+							<input style='width:600px;' type='text' name='0[body]' value=''>
+							<input style='width:600px;' type='hidden' name='0[item_table]' value='{$table_name}'>
+							<input style='width:600px;' type='hidden' name='0[table_key]' value='{$table_key}'>
+							<input style='width:600px;' type='hidden' name='0[user_id]' value='{$user_id}'>
+							<input style='width:600px;' type='hidden' name='0[id]' value='null'>
+							<input style='width:600px;' type='hidden' name='0[datetime]' value='null'>
 						  <br>
 						  <input type='submit' value='Submit'>
 					</form> ";
 		echo $html;
-		}
-	}
-
-
-/*
-	public static function make($table, $key, $user_id, $body){
-		$keys = array ("item_table", "table_key", "user_id", "body");		
-		$values = array($table, $key, $user_id, $body);
-		$assoc = array_combine($keys, $values);
-		static::insert($assoc);
-	}
-	*/	
+	}	
 
 }//class
 

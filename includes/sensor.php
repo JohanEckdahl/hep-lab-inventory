@@ -10,6 +10,16 @@ class Sensor extends Component {
 	public $size;	
 	public $channels;
 	public $manufacturer;
+
+	protected static $form = array(
+		'id' => 'null',
+		'identifier' => '',
+		'type' => '200DD',
+		'size' => '6',
+		'channels' => '128',
+		'manufacturer' 		=> 'HPK',
+	);
+		
 	
 	//Extra Attributes
 	// none other than those from parent for now	

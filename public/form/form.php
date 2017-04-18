@@ -5,7 +5,6 @@
 
 require_once("../../includes/initialize.php");
 
-
 //Check for URL Modifier, if not direct back to index.php
 if (isset($_GET['name'])){
     $object_name = ucfirst($_GET['name']);

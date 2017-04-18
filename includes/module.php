@@ -10,6 +10,15 @@ class Module extends Hardware {
 	public $barcode;
 	public $thickness;
 
+	protected static $form = array(
+		'id' => 'null',
+		'thickness' => '',
+		'sensor_id' => '',
+		'pcb_id'	=> '',
+		'plate_id'	=> '',
+		'barcode'	=> '',
+	);
+
 	//Extra Attributes
 	// none	
 

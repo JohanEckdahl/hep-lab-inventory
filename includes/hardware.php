@@ -36,36 +36,16 @@ class Hardware extends DatabaseObject {
 	
 
 	public static function print_extra_info($object){		
+		global $session;		
 		parent::print_extra_info($object);
 		static::print_table_column_names('comment');
 		static::print_table_attributes(static::find_comments($object));	
-		Comment::print_form();
-	}
-
-	public static function print_table_header($objects){
-		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
-		if(count($objects)==1){			
-			$html .= static::print_image_link($objects[0]);
+		if($session->is_logged_in()){
+			Comment::print_form(get_class($object)::$table_name, $object->id, $session->user_id);
 		}
-		$html.= "<p align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
-		$html.= count($objects)." result(s)</p>";
-		echo $html."<hr>";
-
 	}
 
-	public static function print_image_link($object){
-		$dir  = SITE_ROOT.'/public/inventory/images/';
-		$dir .= get_class($object)::$table_name.'/'.$object->id;
-		if (file_exists($dir)){
-			$link = './images/index.php?object='.get_class($object)::$table_name;
-			$link .= '&id='.$object->id;
-			$html = "<a href=".$link;
-			$html .= ">Images</a>";
-		}else{ 
-			$html = '';
-		}
-		return $html;
-	}
+
 
 }
 

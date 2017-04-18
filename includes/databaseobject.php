@@ -11,7 +11,6 @@ class DatabaseObject {
 	//as they appear in the database
 	public $id;
 	protected static $table_name;
-	public $creation_array = array();
 
 //..........END I.........................
 
@@ -108,6 +107,9 @@ class DatabaseObject {
 
 //.......END III............................	
 
+
+
+
 //.......SECTION IV....................
 	
 	// The following functions are for displaying
@@ -116,19 +118,24 @@ class DatabaseObject {
 
 	public static function print_table_header($objects){
 		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
-		$html.= "<p align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
-		$html.= count($objects)." result(s)</p>";
-		echo $html."<hr>";
+		if(count($objects)==1){			
+			$html .= static::print_image_link($objects[0]);
+		}else{
+			$html.= "<br><br>".static::print_form_links(get_class($objects[0]));
+		}
+		$html.= "<div align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
+		$html.= count($objects)." result(s)</div>";
+		$html.="<hr>";
+		echo $html;
 	}
 
 	
 	public static function print_table_column_names($object_name){
 		echo "<table><tr>";
-                foreach ($object_name::$table_header as $word)
-                {
-                echo "<th>{$word}</th>";
-                }
-                echo '</tr>';
+		foreach ($object_name::$table_header as $word){
+			echo "<th>{$word}</th>";
+		}
+		echo '</tr>';
 	}
 
 	public static function print_table_attributes($objects){		
@@ -144,6 +151,31 @@ class DatabaseObject {
 				}
 				echo "</tr>";	
 		}	
+	}
+
+	public static function print_image_link($object){
+		$dir  = SITE_ROOT.'/public/inventory/images/';
+		$dir .= get_class($object)::$table_name.'/'.$object->id;
+		if (file_exists($dir)){
+			$link = './images/index.php?object='.get_class($object)::$table_name;
+			$link .= '&id='.$object->id;
+			$html = "<a href=".$link;
+			$html .= ">Images</a>";
+		}else{ 
+			$html = '';
+		}
+		return $html;
+	}
+
+	public static function print_form_links($class_name){
+		global $session;
+		if($session->is_logged_in()){
+			$html ="<a href='../form/form.php?name=".$class_name;
+			$html.="&number=1'>Insert</a>";
+		}else{
+			$html ='';
+		}			
+		return $html;
 	}
 
 	public static function print_extra_info($object){
@@ -166,14 +198,14 @@ class DatabaseObject {
 				$html.= "<th>{$key}</th>";
 			}
 			$html.= "</tr>";
-			$html.="<form action='./process.php'>";
-			for ($x = 0; $x<= $number; $x++){
+			$html.="<form action='./process.php?name=".static::$table_name."' method='post'>";
+			for ($x = 0; $x<$number; $x++){
 				$html.="<tr>";				
 				foreach($array as $key=>$value){
-					$html.="<td><input value='{$value}' size='3'></td>";
+					$html.="<td><input name='{$x}[{$key}]' value='{$value}' size='3'></td>";
 				}
 				$html.="</tr>";
-			}				
+			}
 			$html.= "</table>";
 			$html.= "<br><br><input type='submit' value='Submit'></form>"; 
 			echo $html; 
@@ -185,11 +217,14 @@ class DatabaseObject {
 			foreach($items as $key => $value){
 				$escaped[$key] = $database->escape_value($value);
 			}
-			$sql = "INSERT INTO ".static::$table_name." (";
+			$sql  = "INSERT INTO ".static::$table_name." (";
 			$sql .= join(", ", array_keys($escaped));
 			$sql .= ") VALUES ('";
 			$sql .= join("', '", array_values($escaped));
 			$sql .= "')";
+			$sql  = str_replace("'null'","null", $sql);
+			$sql  = str_replace("''","null", $sql);
+			$database->query($sql);
 		}
 
 //........END V.....................
