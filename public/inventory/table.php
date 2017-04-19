@@ -32,19 +32,7 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 
 <?php
 // Print table header
-<<<<<<< HEAD
-	$html = "<font size='6'>".$object_name."</font>&emsp;";
-	if(count($objects) == 1 && in_array($onlc, array('sensor', 'pcb', 'plate', 'module'))){
-		$html.= "<a href='./images/".$onlc."/".$objects[0]->id."/'> images </a>";
-		$html.= " | <a href='./data/".$onlc."/".$objects[0]->id."/'> data </a>";
-	}	
-	$html.= "<p align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
-	$html.= count($objects)." result(s)</p>";
-	echo $html."<hr>";
-
-=======
 	echo $object_name::print_table_header($objects);
->>>>>>> test
 //Print Column Names
 	echo $object_name::print_table_column_names($object_name);
 //Print Attributes
