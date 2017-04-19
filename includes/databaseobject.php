@@ -3,6 +3,8 @@ require_once ("initialize.php");
 
 class DatabaseObject {
 
+//.......SECTION I......................
+
 	// Attributes
 	//All Children have an ID, table_name
 	//Make sure database column name attributes are written
@@ -10,12 +12,16 @@ class DatabaseObject {
 	public $id;
 	protected static $table_name;
 
+//..........END I.........................
 
-	// The following four functions are public and allow for the
-	// finding and instantiaion of objects. They are inhereted by
-	// children who have the static attribute '$table_name'.
-	// Note that 'find_by_sql' & 'find_by_attribute' calls the instantiate method.
 
+//.......SECTION II.....................
+/*
+	The following functions are public and allow for the
+	finding and instantiaion of objects. They are inhereted by
+	children who have the static attribute '$table_name'.
+	Note that 'find_by_sql' & 'find_by_attribute' call the instantiate method.
+*/
 	public static function find_by_id($id=0) {
 		$result_array = static::find_by_sql("SELECT * FROM ".static::$table_name." WHERE id={$id} LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : false;
@@ -62,10 +68,12 @@ class DatabaseObject {
                 return $object_array;
         }
 
+//.......END II...........................
 
 
+//.......SECTION III....................
 
-	//The next two functions istantiate the object
+	//These functions instantiate the object
 	//and assign the specific MySQL table values
 	//to the object's attributes.
 	//The third function is overridden by children
@@ -94,49 +102,136 @@ class DatabaseObject {
 		return $object;
 	}
 
-	//To be Overriden	
+	//Virtual Method
 	protected static function get_extra_attributes($object){}
 
-	
+//.......END III............................	
+
+
+
+
+//.......SECTION IV....................
 	
 	// The following functions are for displaying
 	// object attributes in a table
 
 
+	public static function print_table_header($objects){
+		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
+		if(count($objects)==1){	
+			$html .= static::return_image_link($objects[0]);
+		}else{
+			$html.= "<br><br>".static::return_form_links(get_class($objects[0]));
+		}
+		$html.= "<div align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
+		$html.= count($objects)." result(s)</div>";
+		$html.="<hr>";
+		echo $html;
+	}
+
 	
 	public static function print_table_column_names($object_name){
-		echo "<table><tr>";
-                foreach ($object_name::$table_header as $word)
-                {
-                echo "<th>{$word}</th>";
-                }
-                echo '</tr>';
+		$html = "<table><tr>";
+		foreach ($object_name::$table_header as $word){
+			$html.= "<th>{$word}</th>";
+		}
+		$html.='</tr>';
+		echo $html;	
 	}
 
 	public static function print_table_attributes($objects){		
+		$html = '';		
 		foreach ($objects as $object){
-                echo "<tr>";
+                $html .= "<tr>";
                 foreach (get_class($object)::$table_attributes as $att){
-						$html = "<td><a href='./table";
+						$html .= "<td><a href='./table";
 						$html .=".php?name=".get_class($object); 
 						$html .="&item=".$att;
                         $html .= "&value=".$object->$att;
                         $html .= "'>".$object->$att."</a></td>";
-                        echo $html;
-				}
-				echo "</tr>";	
-		}	
+                }
+				$html .="</tr>";	
+		}
+		echo $html;
+	}
+
+	public static function return_image_link($object){
+		$dir  = SITE_ROOT.'/public/inventory/images/';
+		$dir .= get_class($object)::$table_name.'/'.$object->id;
+		if (file_exists($dir)){
+			$link = './images/index.php?object='.get_class($object)::$table_name;
+			$link .= '&id='.$object->id;
+			$html = "<a href=".$link;
+			$html .= ">Images</a>";
+		}else{ 
+			$html = '';
+		}
+		return $html;
+	}
+
+	public static function return_form_links($class_name){
+		global $session;
+		if($session->is_logged_in()){
+			$html ="<a href='../form/form.php?name=".$class_name;
+			$html.="&number=1'>Insert</a>";
+		}else{
+			$html ='';
+		}			
+		return $html;
 	}
 
 	public static function print_extra_info($object){
 	}
 
+//.......END IV............................
 
 
 
+//..........Section V......................
+/*	
+	This section covers methods for creation of objects and 
+	insertion into the database
+*/
+
+		public static function form_generator($number){
+			$array = static::$form;
+			$html = "<table><tr>";		
+			foreach($array as $key=>$value){
+				$html.= "<th>{$key}</th>";
+			}
+			$html.= "</tr>";
+			$html.="<form action='./process.php?name=".static::$table_name."' method='post'>";
+			for ($x = 0; $x<$number; $x++){
+				$html.="<tr>";				
+				foreach($array as $key=>$value){
+					$html.="<td><input name='{$x}[{$key}]' value='{$value}' size='3'></td>";
+				}
+				$html.="</tr>";
+			}
+			$html.= "</table>";
+			$html.= "<br><br><input type='submit' value='Submit'></form>"; 
+			echo $html; 
+		}
 
 
-}//Close Class Brace
+		public static function insert($items) {
+			global $database;
+			foreach($items as $key => $value){
+				$escaped[$key] = $database->escape_value($value);
+			}
+			$sql  = "INSERT INTO ".static::$table_name." (";
+			$sql .= join(", ", array_keys($escaped));
+			$sql .= ") VALUES ('";
+			$sql .= join("', '", array_values($escaped));
+			$sql .= "')";
+			$sql  = str_replace("'null'","null", $sql);
+			$sql  = str_replace("''","null", $sql);
+			$database->query($sql);
+		}
+
+//........END V.....................
+
+}//End Class
 
 ?>
 

@@ -27,6 +27,7 @@ class Hardware extends DatabaseObject {
 		$sql.= " AND table_key = ".$object->id;
 		return Comment::find_by_sql($sql);
 	}
+			
 	
 	protected static function get_extra_attributes($object){
 		parent::get_extra_attributes($object);
@@ -35,10 +36,16 @@ class Hardware extends DatabaseObject {
 	
 
 	public static function print_extra_info($object){		
+		global $session;		
 		parent::print_extra_info($object);
 		static::print_table_column_names('comment');
-		static::print_table_attributes(static::find_comments($object));
+		static::print_table_attributes(static::find_comments($object));	
+		if($session->is_logged_in()){
+			Comment::print_form(get_class($object)::$table_name, $object->id, $session->user_id);
+		}
 	}
+
+
 
 }
 

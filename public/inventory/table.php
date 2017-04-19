@@ -30,12 +30,13 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 </head>
 <body>
 <nav>
-<?php require_once('../../includes/sidebar.php'); ?>
+<?php require_once(LIB_PATH.'/sidebar.php'); ?>
 </nav>
 <section>
 
 <?php
 // Print table header
+<<<<<<< HEAD
 	$html = "<font size='6'>".$object_name."</font>&emsp;";
 	if(count($objects) == 1 && in_array($onlc, array('sensor', 'pcb', 'plate', 'module'))){
 		$html.= "<a href='./images/".$onlc."/".$objects[0]->id."/'> images </a>";
@@ -45,13 +46,16 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 	$html.= count($objects)." result(s)</p>";
 	echo $html."<hr>";
 
+=======
+	echo $object_name::print_table_header($objects);
+>>>>>>> test
 //Print Column Names
-	$object_name::print_table_column_names($object_name);
+	echo $object_name::print_table_column_names($object_name);
 //Print Attributes
-	$object_name::print_table_attributes($objects);
+	echo $object_name::print_table_attributes($objects);
 //Print Extra Info	
 	if(count($objects)==1){
-		$object_name::print_extra_info(array_pop($objects));
+		echo $object_name::print_extra_info(array_pop($objects));
 	}
 ?>
 

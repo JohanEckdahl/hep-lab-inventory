@@ -14,6 +14,19 @@ class Plate extends Component {
   	public $size;
 	public $manufacturer;
 
+	protected static $form = array(
+		'id' => 'null',
+		'material' => 'CuW',
+		'nom_thickness' => '',
+		'min_thickness' => '',
+		'max_thickness' => '',
+		'flatness' 		=> '',
+		'kapton'		=> 'n',
+		'size'			=> '6',
+		'manufacturer'  => '',
+	);
+		
+
 
 
 	//Web Table Display Arrays	

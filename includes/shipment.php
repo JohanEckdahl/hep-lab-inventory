@@ -8,6 +8,13 @@ class Shipment extends DatabaseObject {
 	public $actor;
 	public $recipient;	
 	public $date;
+
+	protected static $form = array(
+		'id' => 'null',
+		'actor' => '',
+		'recipient' => '',
+		'date' => 'null',
+	);
 	
 	//Extra Attributes
 	// none other than those from parent for now	
