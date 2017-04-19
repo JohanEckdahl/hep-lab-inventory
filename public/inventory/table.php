@@ -1,8 +1,6 @@
 <?php
 //This Document Provides for the table Style Pages
-
 require_once("../../includes/initialize.php");
-
 //Check for URL Modifier, if not direct back to index.php
 if (isset($_GET['name'])) {
     $object_name = ucfirst($_GET['name']);
@@ -11,7 +9,6 @@ if (isset($_GET['name'])) {
         header( 'Location: ./index.php');
         exit();
 }
-
 //Check for 'Value' and 'Item' and call either
 // find_all or find_by_attribute
 if (isset($_GET['item']) && isset($_GET['value'])){
@@ -19,7 +16,6 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 }else{
 	$objects=$object_name::find_all();
 }
-
 ?>
 
 
