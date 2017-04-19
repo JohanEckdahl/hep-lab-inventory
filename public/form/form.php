@@ -4,6 +4,8 @@
 //This Document Provides for the table Style Pages
 
 require_once("../../includes/initialize.php");
+$session->protect_page();
+
 
 //Check for URL Modifier, if not direct back to index.php
 if (isset($_GET['name'])){

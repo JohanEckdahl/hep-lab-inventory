@@ -45,9 +45,16 @@ class Session {
 	    } else {
 			unset($this->user_id);
 			$this->logged_in = false;
-    	}
-  	}	
-  
+		}
+  	}
+
+
+	public function protect_page(){
+		if($this->is_logged_in()){
+		}else{
+			redirect_to("http://strange.physics.ucsb.edu");
+		}
+	} 
 }//Class Brace
 
 $session = new Session();
