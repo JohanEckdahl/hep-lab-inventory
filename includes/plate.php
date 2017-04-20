@@ -5,6 +5,7 @@ class Plate extends Component {
 
 	//MySQL Table	
 	protected static $table_name='plate';
+	public $identifier;
 	public $material;
 	public $nom_thickness;	
 	public $min_thickness;
@@ -16,6 +17,7 @@ class Plate extends Component {
 
 	protected static $form = array(
 		'id' => 'null',
+		'identifier' => '',
 		'material' => 'CuW',
 		'nom_thickness' => '',
 		'min_thickness' => '',
@@ -30,9 +32,9 @@ class Plate extends Component {
 
 
 	//Web Table Display Arrays	
-	public static $table_header=array('Plate ID', 'Material', 'Nom Thickness', 'Min  Thickness', 'Max Thickness', 'Flatness', 'Kapton', 'Size', 'Manufacturer', 'Module ID', 'Location');
+	public static $table_header=array('Plate ID', 'Identifier', 'Material', 'Nom Thickness', 'Min  Thickness', 'Max Thickness', 'Flatness', 'Kapton', 'Size', 'Manufacturer', 'Module ID', 'Location');
 	public static $table_attributes
-= array('id', 'material', 'nom_thickness', 'min_thickness', 'max_thickness', 'flatness', 'kapton', 'size', 'manufacturer', 'module_id', 'location');
+= array('id', 'identifier', 'material', 'nom_thickness', 'min_thickness', 'max_thickness', 'flatness', 'kapton', 'size', 'manufacturer', 'module_id', 'location');
 
 
 }//Class Brace
