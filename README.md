@@ -68,12 +68,9 @@ which can be put in crontab or ran manually.
 
 ## Security
 
-<<<<<<< HEAD
-All url modifiers are checked against attributes of a given class and never put directly into SQL. All actions besides SELECT are performed directly on the local machine and not through apache. As stated above, configuration data specific to the database is filed in .gitignore and can only be viewed locally or over SSH. If sensitive data is to be put into MySQL it will be discluded from the public mysqldump and dumped and backed up only over a secure connection. Note also that branches other than main are not always entirely secure though will be checked before merging with main.
-=======
-All url modifiers are checked against attributes of a given class and never put directly into SQL. All actions besides SELECT are performed directly on the local machine and not through apache. As stated above, configuration data specific to the database is filed in .gitignore and can only be viewed locally or over SSH. If sensitive data is to be put into MySQL it will be discluded from the public mysqldump and dumped and backed up only over a secure connection.
 
-## Refacorization, Optimization and Beautification
+All url modifiers are checked against attributes of a given class and never put directly into SQL. Form data uses the POST method and form pages are protected by the session class. As stated above, configuration data specific to the database is filed in .gitignore and can only be viewed locally or over SSH. If sensitive data is to be put into MySQL it will be discluded from the public mysqldump and dumped and backed up only over a secure connection. Note also that branches other than master are not always entirely secure though will be checked before merging with main.
+
+## Refacorization, Optimization and Aesthetics
 
 It is easy to see that there are plenty of places where this can be done! Feel free to help out.
->>>>>>> 2afe1656a50b461890570ac39f4b45365bf92061
