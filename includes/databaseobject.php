@@ -103,7 +103,8 @@ class DatabaseObject {
 	}
 
 	//Virtual Method
-	protected static function get_extra_attributes($object){}
+	protected static function get_extra_attributes($object){
+	}
 
 //.......END III............................	
 
@@ -172,8 +173,13 @@ class DatabaseObject {
 	public static function return_form_links($class_name){
 		global $session;
 		if($session->is_logged_in()){
-			$html ="<a href='../form/form.php?name=".$class_name;
-			$html.="&number=1'>Insert</a>";
+			$html = "<form action='../form/form.php' method='get'>";
+			$html.= "<input type='radio' name='action' value='insert'>Insert Number: ";
+			$html.= "<input type='text' name='number' size='1'>      |";
+			$html.= "<input type='radio' name='action' value='update'>Update ID: ";
+			$html.= "<input type='text' name='id' size='1'>   ";
+			$html.= "<input type='submit' value='Go'>";
+			$html.= "<input type='hidden' name='name' value='{$class_name}'>";
 		}else{
 			$html ='';
 		}			
@@ -193,7 +199,7 @@ class DatabaseObject {
 	insertion into the database
 */
 
-		public static function form_generator($number){
+		public static function insert_form_generator($id, $number){
 			$array = static::$form;
 			$html = "<table><tr>";		
 			foreach($array as $key=>$value){
@@ -209,7 +215,30 @@ class DatabaseObject {
 				$html.="</tr>";
 			}
 			$html.= "</table>";
-			$html.= "<br><br><input type='submit' value='Submit'></form>"; 
+			$html.= "<br><br><input type='submit' value='Submit'></form>";
+			$html.= "<input type='hidden' name='action' value='insert'>"; 
+			echo $html; 
+		}
+
+		public static function update_form_generator($id, $number){
+			$object = static::find_by_id($id);
+			$array = static::$form;
+			$html = "<table><tr>";		
+			foreach($array as $key=>$value){
+				$html.= "<th>{$key}</th>";
+			}
+			$html.= "</tr>";
+			$html.="<form action='./process.php?name=".static::$table_name."' method='post'>";
+			for ($x = 0; $x<$number; $x++){
+				$html.="<tr>";				
+				foreach($array as $key=>$value){
+					$html.="<td><input name='{$x}[{$key}]' value='{$object->$key}' size='3'></td>";
+				}
+				$html.="</tr>";
+			}
+			$html.= "</table>";
+			$html.= "<br><br><input type='submit' value='Submit'></form>";
+			$html.= "<input type='hidden' name='action' value='update'>";
 			echo $html; 
 		}
 
@@ -229,6 +258,27 @@ class DatabaseObject {
 			$database->query($sql);
 		}
 
+
+		public function update($items) {
+			global $database;
+			foreach($items as $key => $value){
+				$escaped[$key] = $database->escape_value($value);
+			}
+			$subsql='';
+			foreach($escaped as $key => $value){
+				$subsql.= $key." = '". $value."', ";
+			}
+			$subsql = substr($subsql, 0, -2);	
+			$sql = "UPDATE ".static::$table_name." SET ";
+			$sql .= $subsql;
+			$sql .= " WHERE id=". $escaped['id'];
+			$sql  = str_replace("'null'","null", $sql);
+			$sql  = str_replace("''","null", $sql);		
+			echo $sql;	  		
+			$database->query($sql);
+			echo $sql;
+	  		return ($database->affected_rows() == 1) ? true : false;
+		}
 //........END V.....................
 
 }//End Class

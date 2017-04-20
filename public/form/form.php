@@ -15,11 +15,26 @@ if (isset($_GET['name'])){
 
 //Check for 'Value' and 'Item' and call either
 // find_all or find_by_attribute
-if (isset($_GET['number'])){
+if ($_GET['number'] != 0){
 	$number=$_GET['number'];
+}else{
+	$number = 1;
 }
 
-$object_name::form_generator($number);
+if (isset($_GET['action'])){
+	$action=$_GET['action'];
+}
 
+if (isset($_GET['id'])){
+	$id=$_GET['id'];
+}
+
+
+echo "<h1>{$object_name}</h1>";
+if($action == 'insert'){
+	$object_name::insert_form_generator($id, $number);
+}else{
+	$object_name::update_form_generator($id, $number);
+}
 ?>
 
