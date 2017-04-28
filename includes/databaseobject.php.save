@@ -206,7 +206,7 @@ class DatabaseObject {
 				$html.= "<th>{$key}</th>";
 			}
 			$html.= "</tr>";
-			$html.="<form action='./process.php?action=insert&name=".static::$table_name."' method='post'>";
+			$html.="<form action='./process.php?action='insert'&name='".static::$table_name."' method='post'>";
 			for ($x = 0; $x<$number; $x++){
 				$html.="<tr>";				
 				foreach($array as $key=>$value){
@@ -215,7 +215,8 @@ class DatabaseObject {
 				$html.="</tr>";
 			}
 			$html.= "</table>";
-			$html.= "<br><br><input type='submit' value='Submit'></form>";
+			$html.= "<br><br><input type='submit' value='Submit'>"
+			$html.= "<input type='hidden' name='action' value='insert'></form>"; 
 			echo $html; 
 		}
 
@@ -227,7 +228,7 @@ class DatabaseObject {
 				$html.= "<th>{$key}</th>";
 			}
 			$html.= "</tr>";
-			$html.="<form action='./process.php?action=update&name=".static::$table_name."' method='post'>";
+			$html.="<form action='./process.php?name=".static::$table_name."' method='post'>";
 			for ($x = 0; $x<$number; $x++){
 				$html.="<tr>";				
 				foreach($array as $key=>$value){
@@ -236,7 +237,8 @@ class DatabaseObject {
 				$html.="</tr>";
 			}
 			$html.= "</table>";
-			$html.= "<br><br><input type='submit' value='Submit'></form>";
+			$html.= "<br><br><input type='submit' value='Submit'>";
+			$html.= "<input type='hidden' name='action' value='update'></form>";
 			echo $html; 
 		}
 
@@ -253,7 +255,6 @@ class DatabaseObject {
 			$sql .= "')";
 			$sql  = str_replace("'null'","null", $sql);
 			$sql  = str_replace("''","null", $sql);
-			echo $sql;
 			$database->query($sql);
 		}
 

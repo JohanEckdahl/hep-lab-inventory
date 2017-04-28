@@ -17,15 +17,15 @@ class Plate extends Component {
 
 	protected static $form = array(
 		'id' => 'null',
-		'identifier' => '',
+		'identifier' => 'NCU ',
 		'material' => 'CuW',
-		'nom_thickness' => '',
+		'nom_thickness' => '1.2',
 		'min_thickness' => '',
 		'max_thickness' => '',
 		'flatness' 		=> '',
 		'kapton'		=> 'n',
 		'size'			=> '6',
-		'manufacturer'  => '',
+		'manufacturer'  => 'NCU',
 	);
 		
 
