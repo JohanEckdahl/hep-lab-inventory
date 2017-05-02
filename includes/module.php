@@ -9,7 +9,10 @@ class Module extends Hardware {
 	public $pcb_id;
 	public $barcode;
 	public $thickness;
-
+	public $tray_number;
+	public $position;
+	public $top_layer;
+	
 	protected static $form = array(
 		'id' => 'null',
 		'thickness' => '',
@@ -17,6 +20,8 @@ class Module extends Hardware {
 		'pcb_id'	=> '',
 		'plate_id'	=> '',
 		'barcode'	=> '',
+		'tray_number'	=> '',
+		'position'	=> '',
 	);
 
 	//Extra Attributes
@@ -24,8 +29,8 @@ class Module extends Hardware {
 
 
 	//Web Table Display Arrays
-	public static $table_header=array('Module ID', 'Sensor ID', 'PCB ID', 'Plate ID', 'Thickness', 'Location');
-	public static $table_attributes= array('id', 'sensor_id', 'pcb_id', 'plate_id', 'thickness', 'location');
+	public static $table_header=array('Module ID', 'Sensor ID', 'PCB ID', 'Plate ID', 'Thickness', 'Location', 'top layer');
+	public static $table_attributes= array('id', 'sensor_id', 'pcb_id', 'plate_id', 'thickness', 'location', 'top_layer');
 
 
 
@@ -42,6 +47,24 @@ class Module extends Hardware {
 			$component::print_extra_info($object2[0]);
 		}
 	}
+
+
+	 protected static function get_extra_attributes($object){
+                parent::get_extra_attributes($object);
+                $object->top_layer = self::find_top_layer($object);
+        }
+
+	protected static function find_top_layer($object){
+		$attributes = array('plate_id', 'sensor_id', 'pcb_id');
+		$top_layer=0;	
+		foreach($attributes as $att){
+			if(isset($object->$att)){
+				$top_layer++;
+			}
+		}
+		return $top_layer;
+	}
+
 
 
 }
