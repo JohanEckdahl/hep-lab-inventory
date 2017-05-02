@@ -23,7 +23,6 @@ class Plate extends Component {
 		'min_thickness' => '',
 		'max_thickness' => '',
 		'flatness' 		=> '',
-		'kapton'		=> 'n',
 		'size'			=> '6',
 		'manufacturer'  => 'NCU',
 	);
@@ -32,9 +31,9 @@ class Plate extends Component {
 
 
 	//Web Table Display Arrays	
-	public static $table_header=array('Plate ID', 'Identifier', 'Material', 'Nom Thickness', 'Min  Thickness', 'Max Thickness', 'Flatness', 'Kapton', 'Size', 'Manufacturer', 'Module ID', 'Location');
+	public static $table_header=array('Plate ID',  'Module ID', 'Identifier', 'Material', 'Nom Thickness', 'Min  Thickness', 'Max Thickness', 'Flatness', 'Size', 'Manufacturer', 'Location');
 	public static $table_attributes
-= array('id', 'identifier', 'material', 'nom_thickness', 'min_thickness', 'max_thickness', 'flatness', 'kapton', 'size', 'manufacturer', 'module_id', 'location');
+= array('id', 'module_id', 'identifier', 'material', 'nom_thickness', 'min_thickness', 'max_thickness', 'flatness', 'size', 'manufacturer', 'location');
 
 
 }//Class Brace

@@ -12,6 +12,7 @@ class Module extends Hardware {
 	public $tray_number;
 	public $position;
 	public $top_layer;
+	public $kapton;
 	
 	protected static $form = array(
 		'id' => 'null',
@@ -22,6 +23,7 @@ class Module extends Hardware {
 		'barcode'	=> '',
 		'tray_number'	=> '',
 		'position'	=> '',
+		'kapton' => '',
 	);
 
 	//Extra Attributes
@@ -29,8 +31,8 @@ class Module extends Hardware {
 
 
 	//Web Table Display Arrays
-	public static $table_header=array('Module ID', 'Sensor ID', 'PCB ID', 'Plate ID', 'Thickness', 'Location', 'top layer');
-	public static $table_attributes= array('id', 'sensor_id', 'pcb_id', 'plate_id', 'thickness', 'location', 'top_layer');
+	public static $table_header=array('Module ID', 'Top Layer', 'Sensor ID', 'PCB ID', 'Plate ID', 'Thickness', 'Location', );
+	public static $table_attributes= array('id', 'top_layer', 'sensor_id', 'pcb_id', 'plate_id', 'thickness', 'location', );
 
 
 
@@ -41,13 +43,13 @@ class Module extends Hardware {
 		$components=array('sensor', 'pcb', 'plate');
 		foreach($components as $component){			
 			$cid=$component."_id";
-			$object2 = ucfirst($component)::find_by_attribute('id', $object->$cid);		
+			$object2 = (object) ucfirst($component)::find_by_attribute('id', $object->$cid);		
 			static::print_table_column_names($component);
 			$component::print_table_attributes($object2);
-			$component::print_extra_info($object2[0]);
+			$component::print_extra_info($object2);
+			
 		}
 	}
-
 
 	 protected static function get_extra_attributes($object){
                 parent::get_extra_attributes($object);
@@ -56,17 +58,25 @@ class Module extends Hardware {
 
 	protected static function find_top_layer($object){
 		$attributes = array('plate_id', 'sensor_id', 'pcb_id');
-		$top_layer=0;	
+		$top_layer=0;		
 		foreach($attributes as $att){
 			if(isset($object->$att)){
 				$top_layer++;
 			}
 		}
+		if($top_layer == 1){
+			if($object->kapton == 'y'){
+				$top_layer= 'kapton';
+			}else{
+				$top_layer='plate';
+			}
+		}elseif($top_layer == 2){
+			$top_layer = 'sensor';
+		}else{
+			$top_layer='pcb';
+		}
 		return $top_layer;
 	}
-
-
-
 }
 
 

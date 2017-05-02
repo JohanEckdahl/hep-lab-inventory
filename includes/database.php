@@ -46,6 +46,7 @@ class MySQLDatabase {
 
 	//Perform Query with Confirmation
 	public function query($sql) {
+		//echo $sql;
 	    $result = mysqli_query($this->connection, $sql);
 	    $this->confirm_query($result);
 	    return $result;

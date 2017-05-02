@@ -48,7 +48,7 @@ class Comment extends DatabaseObject{
 	
 
 	public static function print_form($table_name, $table_key, $user_id){
-		$html =	"<form action='../form/process.php?name=comment' method = 'post'>
+		$html =	"<form action='../form/process.php?name=comment&action=insert' method = 'post'>
 						 Comment:<br>
 							<input style='width:600px;' type='text' name='0[body]' value=''>
 							<input style='width:600px;' type='hidden' name='0[item_table]' value='{$table_name}'>

@@ -4,11 +4,12 @@ require_once ("initialize.php");
 class DatabaseObject {
 
 //.......SECTION I......................
+/* 	Attributes
+	All Children have an ID and table_name
+	Make sure database column name attributes are written
+	as they appear in the database
+*/
 
-	// Attributes
-	//All Children have an ID, table_name
-	//Make sure database column name attributes are written
-	//as they appear in the database
 	public $id;
 	protected static $table_name;
 
