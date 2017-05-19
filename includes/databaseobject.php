@@ -119,7 +119,9 @@ class DatabaseObject {
 
 
 	public static function print_table_header($objects){
-		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
+		$html = "<font size='6'>".get_class($objects[0]);
+		$html.=	"</font>&emsp;";
+		
 		if(count($objects)==1){	
 			$html .= static::return_image_link($objects[0]);
 		}else{

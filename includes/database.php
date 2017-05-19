@@ -98,7 +98,7 @@ class MySQLDatabase {
 
 
 
-}//Class Braces
+}//Class Brace
 
 
 // If this class is included it might as well be instantiated
