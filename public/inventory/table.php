@@ -16,34 +16,17 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 }else{
 	$objects=$object_name::find_all();
 }
-?>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
-</head>
-<body>
-<nav>
-<?php require_once(LIB_PATH.'/sidebar.php'); ?>
-</nav>
-<section>
-
-<?php
 // Print table header
-	echo $object_name::print_table_header($objects);
+	$header = $object_name::print_table_header($objects);
 //Print Column Names
-	echo $object_name::print_table_column_names($object_name);
+	$column_names = $object_name::print_table_column_names($object_name);
 //Print Attributes
-	echo $object_name::print_table_attributes($objects);
+	$attributes = $object_name::print_table_attributes($objects);
 //Print Extra Info	
-	if(count($objects)==1){
-		echo $object_name::print_extra_info(array_pop($objects));
-	}
+	$extra_info = $object_name::print_extra_info(array_pop($objects));
+
+$database->close_connection();
+
+require_once('table_template.php');
 ?>
 
-</section>
-<?php $database->close_connection(); ?>
-</body>
-</html>

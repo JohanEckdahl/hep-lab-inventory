@@ -128,7 +128,7 @@ class DatabaseObject {
 		$html.= "<div align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
 		$html.= count($objects)." result(s)</div>";
 		$html.="<hr>";
-		echo $html;
+		return $html;
 	}
 
 	
@@ -138,7 +138,7 @@ class DatabaseObject {
 			$html.= "<th>{$word}</th>";
 		}
 		$html.='</tr>';
-		echo $html;	
+		return $html;	
 	}
 
 	public static function print_table_attributes($objects){		
@@ -154,7 +154,7 @@ class DatabaseObject {
                 }
 				$html .="</tr>";	
 		}
-		echo $html;
+		return $html;
 	}
 
 	public static function return_image_link($object){
