@@ -118,12 +118,12 @@ class DatabaseObject {
 	// object attributes in a table
 
 
-	public static function print_table_header($objects){
+	public static function return_table_header_html($objects){
 		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
 		if(count($objects)==1){	
 			$html .= static::return_image_link($objects[0]);
 		}else{
-			$html.= "<br><br>".static::return_form_links(get_class($objects[0]));
+			$html.= "<br><br>".static::return_form_link_html(get_class($objects[0]));
 		}
 		$html.= "<div align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
 		$html.= count($objects)." result(s)</div>";
@@ -132,7 +132,7 @@ class DatabaseObject {
 	}
 
 	
-	public static function print_table_column_names($object_name){
+	public static function return_table_column_name_html($object_name){
 		$html = "<table><tr>";
 		foreach ($object_name::$table_header as $word){
 			$html.= "<th>{$word}</th>";
@@ -141,7 +141,7 @@ class DatabaseObject {
 		return $html;	
 	}
 
-	public static function print_table_attributes($objects){		
+	public static function return_table_attributes_html($objects){		
 		$html = '';		
 		foreach ($objects as $object){
                 $html .= "<tr>";
@@ -171,7 +171,7 @@ class DatabaseObject {
 		return $html;
 	}
 
-	public static function return_form_links($class_name){
+	public static function return_form_link_html($class_name){
 		global $session;
 		if($session->is_logged_in()){
 			$html = "<form action='../form/form.php' method='get'>";
@@ -185,9 +185,6 @@ class DatabaseObject {
 			$html ='';
 		}			
 		return $html;
-	}
-
-	public static function print_extra_info($object){
 	}
 
 //.......END IV............................

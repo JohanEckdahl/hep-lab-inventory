@@ -19,15 +19,12 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 	$objects=$object_name::find_all();
 }
 // Print table header
-	$header = $object_name::print_table_header($objects);
+	$header = $object_name::return_table_header_html($objects);
 //Print Column Names
-	$column_names = $object_name::print_table_column_names($object_name);
+	$column_names = $object_name::return_table_column_name_html($object_name);
 //Print Attributes
-	$attributes = $object_name::print_table_attributes($objects);
-//Print Extra Info
-	if(count($objects)==1){
-		$extra_info = $object_name::print_extra_info(array_pop($objects));
-	}else{$extra_info='';}
+	$attributes = $object_name::return_table_attributes_html($objects);
+
 
 $sidebar = require_once("../../includes/sidebar.php");
 
