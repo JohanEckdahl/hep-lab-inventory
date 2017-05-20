@@ -11,12 +11,12 @@ $links = array_combine($names, $urls);
 
 
 <?php
-$html='<table>';
+$html='<table><h3><center>Menu</center></h3>';
 foreach ($links as $value=>$key){
 
-$html.= "<tr><a href=table.php?name={$key}>{$value}</a></tr>";
+$html.= "<tr><td><a href=table.php?name={$key}>{$value}</a></td></tr>";
 }
-$html.= "<tr><a href=../admin/index.php>".$session_link."</a></tr></table>";
+$html.= "<tr><td><a href=../admin/index.php>".$session_link."</a></td></tr></table>";
 return $html;
 ?>
 

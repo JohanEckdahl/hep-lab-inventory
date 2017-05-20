@@ -22,7 +22,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   <div class="w3-row-padding">
   
     <!-- Left Column -->
-    <div class="w3-third" style="max-width:200px">
+    <div class="w3-third" style="max-width:150px">
     
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-display-container">
@@ -40,8 +40,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <div class="w3-rest" >
     
       <div class="w3-container w3-card-2 w3-white w3-margin-bottom" style="max-width:2000px">
-        <h2 class="w3-text-grey w3-padding-10"><?php echo $object_name ?></h2> 
-		<?php echo $header.$column_names.$attributes;?>      
+        
+		<?php echo $header.$column_names.$attributes.$extra_info;?>      
 	
 			
 <div class="w3-container">

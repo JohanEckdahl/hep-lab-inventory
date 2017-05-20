@@ -20,7 +20,6 @@ class Hardware extends DatabaseObject {
 			return 'UCSB';
 		}
 	}
-
 	protected static function find_comments($object){
 		$sql = "SELECT * FROM comment WHERE ";
 		$sql.= "item_table = '".get_class($object)::$table_name."'";
