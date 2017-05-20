@@ -18,13 +18,15 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 }else{
 	$objects=$object_name::find_all();
 }
-// Print table header
-	$header = $object_name::return_table_header_html($objects);
-//Print Column Names
-	$column_names = $object_name::return_table_column_name_html($object_name);
-//Print Attributes
-	$attributes = $object_name::return_table_attributes_html($objects);
+$count = count($objects);
 
+$header = $object_name::return_table_header_html($objects);
+$column_names = $object_name::return_table_column_name_html($object_name);
+$attributes = $object_name::return_table_attributes_html($objects);
+
+if($count == 1){
+	$comment_html = $object_name::return_comment_html($objects);
+}else{$comment_html = '';}
 
 $sidebar = require_once("../../includes/sidebar.php");
 

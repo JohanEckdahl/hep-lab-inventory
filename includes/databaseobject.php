@@ -122,6 +122,7 @@ class DatabaseObject {
 		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
 		if(count($objects)==1){	
 			$html .= static::return_image_link($objects[0]);
+			$html .= static::return_data_link($objects[0]);
 		}else{
 			$html.= "<br><br>".static::return_form_link_html(get_class($objects[0]));
 		}
@@ -168,6 +169,14 @@ class DatabaseObject {
 		}else{ 
 			$html = '';
 		}
+		return $html;
+	}
+
+	public static function return_data_link($object){
+		$dir = "./data/".get_class($object)::$table_name."/".$object->id;
+		if (file_exists($dir)){
+		$html = "<a href='{$dir}'>Data</a>";
+		}else{$html='';}
 		return $html;
 	}
 

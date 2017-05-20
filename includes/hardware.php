@@ -26,7 +26,18 @@ class Hardware extends DatabaseObject {
 		$sql.= " AND table_key = ".$object->id;
 		return Comment::find_by_sql($sql);
 	}
-			
+	
+	public static function return_comment_html($objects){
+		$comments = static::find_comments($objects[0]);	
+		$html = Comment::return_table_column_name_html('Comment');
+		$x = Comment::return_table_attributes_html($comments);
+		if($x != ''){ $html.=$x;}else{$html='';}	
+		return $html;		
+	
+	}
+		
+		
+
 	
 	protected static function get_extra_attributes($object){
 		parent::get_extra_attributes($object);

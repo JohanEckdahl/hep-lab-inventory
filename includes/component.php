@@ -28,6 +28,7 @@ class Component extends Hardware {
                 }else {
 			$object2 = $object;
 		}
+
 		$object->location =  self::find_location($object2);
 	}
 
