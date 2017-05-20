@@ -41,13 +41,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     
       <div class="w3-container w3-card-2 w3-white w3-margin-bottom" style="max-width:2000px">
         
-		<?php echo $header.$column_names.$attributes.$comment_html;?>      
+		<?php echo $content;?>      
 	
-			
-<div class="w3-container">
-	
-        </div>
-      </div>
+		</div>
 
 
     <!-- End Right Column -->
@@ -63,4 +59,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
 </body>
 </html>
+
+
+
+
+
+
 
