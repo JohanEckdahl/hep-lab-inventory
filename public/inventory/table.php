@@ -24,6 +24,7 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 	$attributes = $object_name::print_table_attributes($objects);
 //Print Extra Info	
 	$extra_info = $object_name::print_extra_info(array_pop($objects));
+	$sidebar= require_once("../../includes/sidebar.php");
 
 $database->close_connection();
 

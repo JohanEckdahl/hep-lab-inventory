@@ -9,15 +9,15 @@ $urls = array("module", "sensor", "pcb", "plate", "shipment", "comment");
 $links = array_combine($names, $urls);
 ?>
 
-<table cellspacing="5" cellpadding ="8" >
 
 <?php
-$html='';
+$html='<table>';
 foreach ($links as $value=>$key){
-$html.= "<tr><td align='left'><a href=table.php?name={$key}>{$value}</a>";
+
+$html.= "<tr><a href=table.php?name={$key}>{$value}</a></tr>";
 }
-$html.= "<tr><td align='left'><a href=../admin/index.php>".$session_link."</a>";
-echo $html;
+$html.= "<tr><a href=../admin/index.php>".$session_link."</a></tr></table>";
+return $html;
 ?>
 
 </table>
