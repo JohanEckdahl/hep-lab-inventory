@@ -42,6 +42,7 @@ The code is found on github:</br>
 }
 
 
-require_once('table_template.php');
+
+include('table_template.php');
 ?>
 
