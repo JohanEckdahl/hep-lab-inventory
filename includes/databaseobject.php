@@ -1,21 +1,15 @@
 <?php
 require_once ("initialize.php");
-
 class DatabaseObject {
-
 //.......SECTION I......................
 /* 	Attributes
 	All Children have an ID and table_name
 	Make sure database column name attributes are written
 	as they appear in the database
 */
-
 	public $id;
 	protected static $table_name;
-
 //..........END I.........................
-
-
 //.......SECTION II.....................
 /*
 	The following functions are public and allow for the
@@ -27,11 +21,9 @@ class DatabaseObject {
 		$result_array = static::find_by_sql("SELECT * FROM ".static::$table_name." WHERE id={$id} LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : false;
 	}
-
 	public static function find_all(){
 		return static::find_by_sql("SELECT * FROM ".static::$table_name." ORDER BY id DESC");
 	}
-
 	public static function find_by_sql($sql=""){
 		global $database;
 		$result = $database->query($sql);
@@ -41,7 +33,6 @@ class DatabaseObject {
 		}
 		return $object_array;
 	}
-
 	protected static function find_assoc($sql){
 		global $database;
 		$query_array= array();
@@ -51,7 +42,6 @@ class DatabaseObject {
 		}
 		return $query_array;
 	}
-
 	public static function find_by_attribute($attribute, $value){
                 global $database;
                 $sql = "SELECT * FROM ".static::$table_name;
@@ -68,26 +58,19 @@ class DatabaseObject {
                 }
                 return $object_array;
         }
-
 //.......END II...........................
-
-
 //.......SECTION III....................
-
 	//These functions instantiate the object
 	//and assign the specific MySQL table values
 	//to the object's attributes.
 	//The third function is overridden by children
 	//and it assigns values to non MySQL table values.
-
-
 	
 	//Does attribute Exist?
 	private function has_attribute($attribute) {
 		$object_vars = get_object_vars($this);
 		return array_key_exists($attribute, $object_vars);
 	}
-
 	
 	// Instantiate Object and Give Attributes Values
 	private static function instantiate($record){		
@@ -102,31 +85,16 @@ class DatabaseObject {
 		static::get_extra_attributes($object);
 		return $object;
 	}
-
 	//Virtual Method
 	protected static function get_extra_attributes($object){
 	}
-
 //.......END III............................	
-
-
-
-
 //.......SECTION IV....................
 	
 	// The following functions are for displaying
 	// object attributes in a table
-
-
-<<<<<<< HEAD
-	public static function print_table_header($objects){
-		$html = "<font size='6'>".get_class($objects[0]);
-		$html.=	"</font>&emsp;";
-		
-=======
 	public static function return_table_header_html($objects){
 		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
->>>>>>> template-changes
 		if(count($objects)==1){	
 			$html .= static::return_image_link($objects[0]);
 			$html .= static::return_data_link($objects[0]);
@@ -138,7 +106,6 @@ class DatabaseObject {
 		$html.="<hr>";
 		return $html;
 	}
-
 	
 	public static function return_table_column_name_html($object_name){
 		$html = "<table><tr>";
@@ -148,7 +115,6 @@ class DatabaseObject {
 		$html.='</tr>';
 		return $html;	
 	}
-
 	public static function return_table_attributes_html($objects){		
 		$html = '';		
 		foreach ($objects as $object){
@@ -164,7 +130,6 @@ class DatabaseObject {
 		}
 		return $html;
 	}
-
 	public static function return_image_link($object){
 		$dir  = SITE_ROOT.'/public/inventory/images/';
 		$dir .= get_class($object)::$table_name.'/'.$object->id;
@@ -178,7 +143,6 @@ class DatabaseObject {
 		}
 		return $html;
 	}
-
 	public static function return_data_link($object){
 		$dir = "./data/".get_class($object)::$table_name."/".$object->id;
 		if (file_exists($dir)){
@@ -186,7 +150,6 @@ class DatabaseObject {
 		}else{$html='';}
 		return $html;
 	}
-
 	public static function return_form_link_html($class_name){
 		global $session;
 		if($session->is_logged_in()){
@@ -202,17 +165,12 @@ class DatabaseObject {
 		}			
 		return $html;
 	}
-
 //.......END IV............................
-
-
-
 //..........Section V......................
 /*	
 	This section covers methods for creation of objects and 
 	insertion into the database
 */
-
 		public static function insert_form_generator($id, $number){
 			$array = static::$form;
 			$html = "<table><tr>";		
@@ -232,7 +190,6 @@ class DatabaseObject {
 			$html.= "<br><br><input type='submit' value='Submit'></form>";
 			echo $html; 
 		}
-
 		public static function update_form_generator($id, $number){
 			$object = static::find_by_id($id);
 			$array = static::$form;
@@ -253,8 +210,6 @@ class DatabaseObject {
 			$html.= "<br><br><input type='submit' value='Submit'></form>";
 			echo $html; 
 		}
-
-
 		public static function insert($items) {
 			global $database;
 			foreach($items as $key => $value){
@@ -270,8 +225,6 @@ class DatabaseObject {
 			echo $sql;
 			$database->query($sql);
 		}
-
-
 		public function update($items) {
 			global $database;
 			foreach($items as $key => $value){
@@ -293,8 +246,13 @@ class DatabaseObject {
 	  		return ($database->affected_rows() == 1) ? true : false;
 		}
 //........END V.....................
-
 }//End Class
-
 ?>
+
+
+
+
+
+
+
 
