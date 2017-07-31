@@ -1,14 +1,14 @@
 <?php
-//This Document Provides for the table Style Pages
+
 require_once("../../includes/initialize.php");
+$sidebar = require_once("../../includes/sidebar.php");
 //Check for URL Modifier, if not direct back to index.php
 if (isset($_GET['name'])) {
     $object_name = ucfirst($_GET['name']);
 	$onlc = strtolower($_GET['name']);
-}else{
-        header( 'Location: ./index.php');
-        exit();
-}
+
+
+
 //Check for 'Value' and 'Item' and call either
 // find_all or find_by_attribute
 if (isset($_GET['item']) && isset($_GET['value'])){
@@ -16,34 +16,33 @@ if (isset($_GET['item']) && isset($_GET['value'])){
 }else{
 	$objects=$object_name::find_all();
 }
+$count = count($objects);
+
+$header = $object_name::return_table_header_html($objects);
+$column_names = $object_name::return_table_column_name_html($object_name);
+$attributes = $object_name::return_table_attributes_html($objects);
+
+if($count == 1 && $object_name != 'Comment'){
+	$comment_html = $object_name::return_comment_html($objects);
+	//$comment_html.= include('./commentmodal.php');
+
+}else{$comment_html = '';}
+
+
+
+$database->close_connection();
+
+$content = $header.$column_names.$attributes.$comment_html;
+
+}else{
+       $content = "MySQL and PHP code for UCSB HGCAL inventory</br></br>
+The code is found on github:</br>
+<a href='https://github.com/JohanEckdahl/hep-lab-inventory'>UCSB Inventory GitHub</a></br></br></br>
+<img src= '../images/cloudchamber.png' width=600 border=0>";
+}
+
+
+
+include('table_template.php');
 ?>
 
-
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
-</head>
-<body>
-<nav>
-<?php require_once(LIB_PATH.'/sidebar.php'); ?>
-</nav>
-<section>
-
-<?php
-// Print table header
-	echo $object_name::print_table_header($objects);
-//Print Column Names
-	echo $object_name::print_table_column_names($object_name);
-//Print Attributes
-	echo $object_name::print_table_attributes($objects);
-//Print Extra Info	
-	if(count($objects)==1){
-		echo $object_name::print_extra_info(array_pop($objects));
-	}
-?>
-
-</section>
-<?php $database->close_connection(); ?>
-</body>
-</html>

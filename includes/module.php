@@ -39,16 +39,7 @@ class Module extends Hardware {
 	//Methods
 	public static function print_extra_info($object){
 		parent::print_extra_info($object);
-		
 		$components=array('sensor', 'pcb', 'plate');
-		foreach($components as $component){			
-			$cid=$component."_id";
-			$object2 = (object) ucfirst($component)::find_by_attribute('id', $object->$cid);		
-			static::print_table_column_names($component);
-			$component::print_table_attributes($object2);
-			$component::print_extra_info($object2);
-			
-		}
 	}
 
 	 protected static function get_extra_attributes($object){

@@ -20,29 +20,28 @@ class Hardware extends DatabaseObject {
 			return 'UCSB';
 		}
 	}
-
 	protected static function find_comments($object){
 		$sql = "SELECT * FROM comment WHERE ";
 		$sql.= "item_table = '".get_class($object)::$table_name."'";
 		$sql.= " AND table_key = ".$object->id;
 		return Comment::find_by_sql($sql);
 	}
-			
+	
+	public static function return_comment_html($objects){
+		$comments = static::find_comments($objects[0]);	
+		$html = Comment::return_table_column_name_html('Comment');
+		$x = Comment::return_table_attributes_html($comments);
+		if($x != ''){ $html.=$x;}else{$html='';}	
+		return $html;		
+	
+	}
+		
+		
+
 	
 	protected static function get_extra_attributes($object){
 		parent::get_extra_attributes($object);
 		$object->location = self::find_location($object);
-	}
-	
-
-	public static function print_extra_info($object){		
-		global $session;		
-		parent::print_extra_info($object);
-		static::print_table_column_names('comment');
-		static::print_table_attributes(static::find_comments($object));	
-		if($session->is_logged_in()){
-			Comment::print_form(get_class($object)::$table_name, $object->id, $session->user_id);
-		}
 	}
 
 

@@ -118,32 +118,38 @@ class DatabaseObject {
 	// object attributes in a table
 
 
+<<<<<<< HEAD
 	public static function print_table_header($objects){
 		$html = "<font size='6'>".get_class($objects[0]);
 		$html.=	"</font>&emsp;";
 		
+=======
+	public static function return_table_header_html($objects){
+		$html = "<font size='6'>".get_class($objects[0])."</font>&emsp;";
+>>>>>>> template-changes
 		if(count($objects)==1){	
 			$html .= static::return_image_link($objects[0]);
+			$html .= static::return_data_link($objects[0]);
 		}else{
-			$html.= "<br><br>".static::return_form_links(get_class($objects[0]));
+			$html.= "<br><br>".static::return_form_link_html(get_class($objects[0]));
 		}
 		$html.= "<div align=right>".@$_GET['item']."=".@$_GET['value']."&emsp;";
 		$html.= count($objects)." result(s)</div>";
 		$html.="<hr>";
-		echo $html;
+		return $html;
 	}
 
 	
-	public static function print_table_column_names($object_name){
+	public static function return_table_column_name_html($object_name){
 		$html = "<table><tr>";
 		foreach ($object_name::$table_header as $word){
 			$html.= "<th>{$word}</th>";
 		}
 		$html.='</tr>';
-		echo $html;	
+		return $html;	
 	}
 
-	public static function print_table_attributes($objects){		
+	public static function return_table_attributes_html($objects){		
 		$html = '';		
 		foreach ($objects as $object){
                 $html .= "<tr>";
@@ -156,7 +162,7 @@ class DatabaseObject {
                 }
 				$html .="</tr>";	
 		}
-		echo $html;
+		return $html;
 	}
 
 	public static function return_image_link($object){
@@ -173,7 +179,15 @@ class DatabaseObject {
 		return $html;
 	}
 
-	public static function return_form_links($class_name){
+	public static function return_data_link($object){
+		$dir = "./data/".get_class($object)::$table_name."/".$object->id;
+		if (file_exists($dir)){
+		$html = "<a href='{$dir}'>Data</a>";
+		}else{$html='';}
+		return $html;
+	}
+
+	public static function return_form_link_html($class_name){
 		global $session;
 		if($session->is_logged_in()){
 			$html = "<form action='../form/form.php' method='get'>";
@@ -187,9 +201,6 @@ class DatabaseObject {
 			$html ='';
 		}			
 		return $html;
-	}
-
-	public static function print_extra_info($object){
 	}
 
 //.......END IV............................
